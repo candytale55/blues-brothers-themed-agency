@@ -42,17 +42,20 @@ nav { font-size: 0.875rem; /* 14px */ }
 /* ------ Links and Lists ------- */
 
 /* Remove bullets and numbers from lists for cleaner custom styling */
-/* ul,
-ol {
+
+ul, ol {
   list-style: none;
-} */
+}
 
 /* Remove underlines and inherit parent color for custom link styling */
-/* a {
+a {
   text-decoration: none;
-  color: inherit;
   cursor: pointer;
-} */
+} 
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
 
 /* ------ Forms ----- */
 
