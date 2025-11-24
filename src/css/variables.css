@@ -1,0 +1,48 @@
+/* ========== CSS CUSTOM PROPERTIES ========== */
+
+:root {
+  /* TODO: Add CSS variables here */
+
+  /* Typography */
+  --font-family-base: sans-serif;
+  --font-size-base: 16px;
+  --font-weight-normal: 400;
+  --font-weight-light: 300;
+  --font-weight-bold: 700;
+  --line-height-base: 1.5;
+
+  /* Background Colors */
+  /* --bg-primary: ; */
+  /* --bg-secondary: ; */
+  /* --bg-accent: ; */
+  /* --bg-dark: ; */
+  /* --bg-light: ; */
+  /* --bg-white: ; */
+
+  /* Text Colors */
+  /* --text-primary: ; */
+  /* --text-secondary: ; */
+  /* --text-accent: ; */
+  /* --text-light: ; */
+  /* --text-dark: ; */
+  /* --text-white: ; */
+
+  /* Border Colors */
+  /* --border-primary: ; */
+  /* --border-secondary: ; */
+  /* --border-light: ; */
+
+  /* Button Colors */
+  /* --btn-bg-primary: ; */
+  /* --btn-bg-secondary: ; */
+  /* --btn-text-primary: ; */
+  /* --btn-text-secondary: ; */
+  /* --btn-hover-bg: ; */
+  /* --btn-hover-text: ; */
+
+  /* Semantic Colors */
+  /* --color-success: ; */
+  /* --color-warning: ; */
+  /* --color-error: ; */
+  /* --color-info: ; */
+}

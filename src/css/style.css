@@ -1,0 +1,91 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ========== GLOBAL STYLES ========== */
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-base);
+  color: var(--color-dark);
+  background-color: var(--color-white);
+}
+
+/* ------ Links and Lists ------- */
+
+/* Remove bullets and numbers from lists for cleaner custom styling */
+/* ul,
+ol {
+  list-style: none;
+} */
+
+/* Remove underlines and inherit parent color for custom link styling */
+/* a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+} */
+
+/* ------ Forms ----- */
+
+/* Reset button styles to allow custom styling without browser defaults */
+/* button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+} */
+
+/* Inherit font properties for consistency with body text */
+/* input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+} */
+
+/* ------ Images ----- */
+
+/* Prevent images from overflowing containers and maintain aspect ratio */
+/* img {
+  max-width: 100%;
+  height: auto;
+} */
+
+/* ========== UTILITY CLASSES ========== */
+
+/* Centers content horizontally with max-width constraint */
+/* .container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+} */
+
+/* Hides content visually but keeps it accessible to screen readers */
+/* .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+} */ /* TODO: Confirm */
+
+/* Capitalizes the first letter of each word */
+/* .capitalize {
+  text-transform: capitalize;
+} */
+
+/* Transforms all text to uppercase letters */
+/* .uppercase {
+  text-transform: uppercase;
+} */
