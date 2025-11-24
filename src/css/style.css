@@ -13,9 +13,31 @@ body {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-base);
-  color: var(--color-dark);
-  background-color: var(--color-white);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
 }
+
+/* ------ Typography ------- */
+
+h1, h2, h3 {
+    color: var(--text-title-color);
+}
+
+strong {
+    font-weight: var(--font-weight-bold);
+    color: var(--text-accent);
+}
+
+/* Font Sizes */
+h1 {  font-size: 3rem; /* 48px */ }
+h2 {  font-size: 1.125rem; /* 18px */}
+
+.intro {
+  font-size: 1.125rem; /* 18px */
+}
+
+button,
+nav { font-size: 0.875rem; /* 14px */ }
 
 /* ------ Links and Lists ------- */
 

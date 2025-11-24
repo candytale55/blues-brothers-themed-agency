@@ -3,26 +3,35 @@
 :root {
   /* TODO: Add CSS variables here */
 
+
+  --white:      #FFFFFF;
+  --black:      #000000;
+  --dark-gray:  #404040;
+  --light-gray: #EBEBEB;
+  --yellow:     #FFE600;
+
   /* Typography */
-  --font-family-base: sans-serif;
+  --font-family-base: Montserrat, sans-serif;
   --font-size-base: 16px;
   --font-weight-normal: 400;
   --font-weight-light: 300;
   --font-weight-bold: 700;
   --line-height-base: 1.5;
 
+  
   /* Background Colors */
-  /* --bg-primary: ; */
-  /* --bg-secondary: ; */
-  /* --bg-accent: ; */
+  --bg-primary:     #FFFFFF; 
+  --bg-secondary:   #000000; 
+  --bg-accent:      #FFE600; 
   /* --bg-dark: ; */
   /* --bg-light: ; */
   /* --bg-white: ; */
 
   /* Text Colors */
-  /* --text-primary: ; */
+  --text-primary:       #404040; 
+  --text-title-color:   #000000; 
   /* --text-secondary: ; */
-  /* --text-accent: ; */
+  --text-accent:        #FFE600; 
   /* --text-light: ; */
   /* --text-dark: ; */
   /* --text-white: ; */
