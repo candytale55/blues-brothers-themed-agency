@@ -25,7 +25,12 @@ h1, h2, h3 {
 
 strong {
     font-weight: var(--font-weight-bold);
+    color: var(--text-title-color);
+}
+
+.accent-text {
     color: var(--text-accent);
+    font-weight: var(--font-weight-bold);
 }
 
 /* Font Sizes */

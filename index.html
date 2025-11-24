@@ -1,42 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jake & Elwood Agency</title>
-    
+
     <!-- link to google fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- CSS -->
     <link rel="stylesheet" href="/src/css/variables.css" />
     <link rel="stylesheet" href="/src/css/style.css" />
   </head>
+
   <body>
+    <header>
+      <nav class="main-nav">
+        <div class="logo-container">
+          <a href="./index.html">LOGO</a>
+        </div>
+        <ul class="nav-list">
+          <li class="nav-element">
+            <a href="./index.html" class="nav-link link">Home</a>
+          </li>
+          <li class="nav-element">
+            <a href="./about.html" class="nav-link link">About us</a>
+          </li>
+          <li class="nav-element">
+            <a href="./contact.html" class="nav-link link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-  <header>
-    <nav class="main-nav">
-      <div class="logo-container">
-        <a href="./index.html">LOGO</a>
-      </div>
-      <ul class="nav-list">
-        <li class="nav-element">
-          <a href="./index.html" class="nav-link link">home</a>
-        </li>
-        <li class="nav-element">
-          <a href="./about.html" class="nav-link link">about us</a>
-        </li>
-        <li class="nav-element">
-          <a href="./contact.html" class="nav-link link">contact</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+    <main>
+      <section class="hero">
+        <h1>
+          The only marketing agency on <span class="accent-text">a mission from God</span>,
+          fully dedicated to increase your web traffic.
+        </h1>
+        <p>
+          We're two brothers from Chicago that are trying to pay back our debt.
+          We can help you with SEO, SEM content marketing and whatever else.
+        </p>
+        <a href="./contact.html" class="link-btn">Contact us</a>
+      </section>
 
+      <section class="info">
+        <div class="info-card">
+          <h2 class="card-title">About Us</h2>
+          <p>
+            We grew up in downtown Chicago, and we used to play in a band. <strong>Jake loves fried chicken</strong>, and <strong>Elwood loves dry white toast</strong>.
+          </p>
+        </div>
 
+        <div class="info-card">
+          <h2 class="card-title">Our skills</h2>
+          <p>
+            Elwood is an expert in <strong>SEO, SEM, and driving from the police</strong>. Jake
+            is our <strong>social media specialist</strong>, and he has an amazing voice.
+          </p>
+        </div>
 
+        <div class="info-card">
+          <h2 class="card-title">Get in touch</h2>
+          <p>
+            Send us an email with some info about what help you <strong>we'll drive over to your place</strong> in our Bluesmobile the following day to          discuss the deal.
+          </p>
+        </div>
+      </section>
+    </main>
 
+    <footer>
+      <p>
+        Two brothers from Chicago that are just trying to pay back their debt by
+        helping others with their SEO, SEM, and Content Marketing needs.
+      </p>
+      <p class="copyright">
+        &copy; Jake&Elwood <span class="copy-year">2019</span>
+      </p>
+    </footer>
 
     <!-- JavaScript -->
     <script type="module" src="/src/js/main.js"></script>
