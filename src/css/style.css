@@ -19,13 +19,9 @@ body {
 
 /* ------ Typography ------- */
 
-h1, h2, h3 {
+h1, h2, h3, strong {
     color: var(--text-title-color);
-}
-
-strong {
     font-weight: var(--font-weight-bold);
-    color: var(--text-title-color);
 }
 
 .accent-text {
