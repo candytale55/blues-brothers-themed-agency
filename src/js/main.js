@@ -1,7 +1,8 @@
 // ========== MAIN JAVASCRIPT ==========
 
-// ========== DOM LOAD TEST ==========
-// Verify that the DOM is fully loaded before executing scripts
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('✓ DOM fully loaded and parsed');
-});
+// ========== COPYRIGHT YEAR ==========
+// Automatically updates the copyright year
+const copyYear = document.querySelector(".copy-year");
+copyYear.textContent = new Date().getFullYear();
+// TODO: Make this a function? 
+  
