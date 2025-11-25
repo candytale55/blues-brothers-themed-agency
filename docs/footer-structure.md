@@ -49,27 +49,83 @@ This document covers the structure and styling of the footer section that appear
 
 #### Layout Strategy
 
-The footer uses the **global grid layout** (`.main-grid` class) for consistent content width:
+The footer uses the **global grid layout** (`.main-grid` class) with **CSS Grid Template Areas** for semantic positioning:
 
+**Mobile (< 600px):**
 ```css
 .footer {
   background-color: var(--bg-footer);
   padding: 4em 0;
   text-align: center;
+  grid-template-areas: 
+    ". social-media ."
+    ". footer-main  .";
 }
 
-.footer-main-container,
+.footer-main-container {
+  grid-area: footer-main;
+}
+
 .rss-links-list {
-  grid-column: 2 / -2;
+  grid-area: social-media;
 }
 ```
 
-**Key features:**
+#### Social Media Links
 
-- Both main container and social links placed in middle column (max 500px)
-- Light gray background (`var(--bg-footer)`) for visual separation from main content
-- Center text alignment for balanced, symmetric layout
-- Consistent vertical padding (`4em`) matches other sections
+**Mobile:**
+```css
+.rss-links-list {
+  grid-area: social-media;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.rss-link {
+  font-size: 1.5rem; /* 24px */
+  color: var(--text-title-color);
+  margin: 0 .5em;
+}
+```
+
+**Tablet and up (≥ 600px):**
+```css
+@media (min-width: 600px) {
+  .rss-links-list {
+    justify-content: flex-end;
+  }
+}
+```
+
+**Hover/Focus states:**
+```css
+.rss-link:hover,
+.rss-link:focus {
+  color: var(--btn-hover-text);
+}
+```
+
+**Design approach:**
+
+- **Flexbox layout:** Horizontal row of social icons
+- **Mobile alignment:** Centered with `justify-content: center`
+- **Desktop alignment:** Right-aligned with `justify-content: flex-end`
+- **Icon spacing:** `margin: 0 .5em` creates horizontal space between icons (replaces `gap`)
+- **Grid positioning:** Positioned using `grid-area: social-media` instead of `order: -1`
+- **Large touch targets:** `1.5rem` (24px) icon size meets accessibility guidelines
+- **Interactive states:** Hover/focus changes color to medium gray (`var(--btn-hover-text)`)
+- **Font Awesome icons:** Using CDN-hosted Font Awesome 7.0.1 for brand icons
+- Social media icons occupy one column (right side)
+- Left-aligned text for main content (`text-align: left`)
+- Right-aligned social icons (`justify-content: flex-end`)
+- Creates professional, balanced desktop footer layout
+
+**Why Grid Template Areas:**
+- **Semantic naming:** `social-media` and `footer-main` are more readable than numeric grid positions
+- **Easy reorganization:** Change layout by simply rearranging area names in template
+- **Responsive flexibility:** Restructure entire footer layout between mobile and desktop without changing HTML
+- **Maintainability:** Clear visual representation of layout structure in CSS
 
 #### Social Media Links
 
@@ -87,21 +143,6 @@ The footer uses the **global grid layout** (`.main-grid` class) for consistent c
   color: var(--text-title-color);
 }
 
-.rss-link:hover,
-.rss-link:focus {
-  color: var(--btn-hover-text);
-}
-```
-
-**Design approach:**
-
-- **Flexbox layout:** Horizontal row of social icons with centered alignment
-- **Visual reordering:** `order: -1` moves social links above main content in visual display (despite HTML order)
-- **Generous spacing:** `gap: 1.5em` creates comfortable space between clickable icons
-- **Large touch targets:** `1.5rem` (24px) icon size meets accessibility guidelines
-- **Interactive states:** Hover/focus changes color for user feedback
-- **Font Awesome icons:** Using CDN-hosted Font Awesome 7.0.1 for brand icons
-
 #### Typography & Styling
 
 ```css
@@ -114,6 +155,21 @@ The footer uses the **global grid layout** (`.main-grid` class) for consistent c
 }
 
 .footer .logo {
+  margin: 0 0 1em 0;
+}
+
+.footer p,
+.footer .logo {
+  opacity: 0.9;
+}
+```
+
+**Styling details:**
+
+- **Reduced opacity:** `0.9` creates subtle visual hierarchy (content less prominent than main sections)
+- **Smaller copyright:** `0.875rem` (14px) for less visual weight
+- **Logo spacing:** Bottom margin only (`0 0 1em 0`) creates space below logo
+- **Consistent rhythm:** Bottom margins create vertical spacing between elements
   margin: 1em 0;
 }
 
@@ -133,11 +189,32 @@ The footer uses the **global grid layout** (`.main-grid` class) for consistent c
 ### Design Decisions
 
 1. **Global grid:** Reuses `.main-grid` class for width consistency with hero and info sections
-2. **Visual reordering:** CSS `order` property places social icons at top despite HTML source order (maintains logical document structure for screen readers)
-3. **Font Awesome CDN:** Using external icon library reduces file size and provides consistent, recognizable brand icons
-4. **Center alignment:** Appropriate for footer content; creates balanced, symmetric layout
-5. **Light background:** Subtle visual separation distinguishes footer from main content
-6. **Opacity reduction:** Creates subtle hierarchy without requiring separate color variables
+2. **Grid Template Areas:** Named grid areas provide semantic, readable layout structure that's easy to reorganize
+3. **Responsive restructure:** Footer transforms from centered vertical stack (mobile) to horizontal split layout (desktop)
+4. **Font Awesome CDN:** Using external icon library reduces file size and provides consistent, recognizable brand icons
+5. **Flexible alignment:** Center-aligned on mobile, left/right split on desktop for professional appearance
+6. **Light background:** Subtle visual separation distinguishes footer from main content
+7. **Opacity reduction:** Creates subtle hierarchy without requiring separate color variables
+
+### Responsive Behavior
+
+**Breakpoint: 600px**
+
+**Mobile (< 600px):**
+- Vertical stacked layout (2 rows)
+- Social icons above main content
+- All content center-aligned
+### TODOs
+
+- [ ] Replace `#` placeholder links with actual social media URLs
+- [ ] Add JavaScript to dynamically update `.copy-year` to current year
+- [ ] Consider adding aria-labels to social media links for better accessibility
+- [ ] Test social icon visibility on different backgrounds
+- [ ] Test layout with different amounts of footer text content
+- [ ] Consider adjusting grid-template-areas proportions on wider screens (1024px+)
+- [ ] Consider fallback if Font Awesome CDN fails to load
+- [ ] Add spacing between media query at 600px - might need adjustment at standard 768px tablet breakpoint
+- Creates balanced desktop footer with clear content separation
 
 ### External Dependencies
 
