@@ -15,36 +15,68 @@ body {
   line-height: var(--line-height-base);
   color: var(--text-primary);
   background-color: var(--bg-primary);
+  height: 100vh;
 }
 
 /* ------ Typography ------- */
 
-h1, h2, h3, strong {
-    color: var(--text-title-color);
-    font-weight: var(--font-weight-bold);
+h1 {
+  font-weight: var(--font-weight-bold);
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.4;
+}
+
+h2,
+h3,
+strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--text-title-color);
 }
 
 .accent-text {
-    color: var(--text-accent);
-    font-weight: var(--font-weight-bold);
+  color: var(--text-accent);
+  font-weight: var(--font-weight-bold);
 }
 
-/* Font Sizes */
-h1 {  font-size: 3rem; /* 48px */ }
-h2 {  font-size: 1.125rem; /* 18px */}
+.hero-title {
+  
+}
+
+h2 {
+  font-size: 1.125rem; /* 18px */
+}
 
 .intro {
   font-size: 1.125rem; /* 18px */
 }
 
 button,
-nav { font-size: 0.875rem; /* 14px */ }
+nav {
+  font-size: 0.875rem; /* 14px */
+}
+
+/* ------ Buttons ------- */
+
+.btn {
+  display: inline-block;
+  font-weight: var(--font-weight-bold);
+  padding: 0.5em 1.5em;
+ }
+
+ .hero-btn {
+  background-color: var(--bg-accent);
+  color: var(--black);
+  padding: 0.5em 1.5em;
+  justify-self: start;
+  margin-top: 1em;
+ }
 
 /* ------ Links and Lists ------- */
 
 /* Remove bullets and numbers from lists for cleaner custom styling */
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -52,9 +84,10 @@ ul, ol {
 a {
   text-decoration: none;
   cursor: pointer;
-} 
+}
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   text-decoration: underline;
 }
 
@@ -115,3 +148,18 @@ select {
 /* .uppercase {
   text-transform: uppercase;
 } */
+
+/* ====== HERO SECTION ======  */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(1em, 1fr) minmax(0px, 500px) minmax(1em, 1fr); /*TODO: Understand why this works (gets the hero image large)*/
+  background-image: url(../images/hero-bg.jpg); /*TODO: Accessibility tags*/
+  background-color: var(--bg-secondary);
+  color: var(--white);
+  padding: 4em 0;
+}
+
+.hero > * {
+  grid-column: 2 / -2;
+}
