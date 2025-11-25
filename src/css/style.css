@@ -195,12 +195,18 @@ header {
 }
 
 .header-nav {
-  position: fixed;
   background-color: var(--bg-secondary);
+  width: 100%;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0; 
+  left: 100%; /* Shifts the nav out of the way to the left 100% */
+  transform: translateX(0);
+}
+
+.navigation-open {
+  transform: translateX(-100%); /* Brings the nav into view again */
 }
 
 .nav-list {
