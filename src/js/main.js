@@ -8,10 +8,15 @@ copyYear.textContent = new Date().getFullYear();
   
 
 // ========== TOGGLE NAVIGATION ==========
-
-const closeNavBtn = document.querySelector(".close-nav-btn");
 const headerNav = document.querySelector(".header-nav");
 
+const closeNavBtn = document.querySelector(".close-nav-btn");
 closeNavBtn.addEventListener("click", () => {
-    headerNav.classList.remove('navigation-open'); 
+    headerNav.classList.remove("navigation-open"); 
+});
+
+
+const openNavBtn = document.querySelector(".open-nav-btn");
+openNavBtn.addEventListener("click", () => { 
+    headerNav.classList.add("navigation-open");
 });

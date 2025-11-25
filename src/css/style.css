@@ -203,6 +203,7 @@ header {
   bottom: 0;
   left: 100%; /* Shifts the nav out of the way to the left 100% */
   transform: translateX(0);
+  transition: transform 250ms;
 }
 
 .navigation-open {
@@ -231,14 +232,24 @@ header {
   text-decoration: none;
 } 
 
-.close-nav-btn {
-  position: absolute;
+
+.close-nav-btn, .open-nav-btn {
   border: 0;
   background: 0;
-  color: var(--text-accent);
   font-weight: var(--font-weight-bold);
-  font-size: 3rem; /* 48px */
   padding: 0.5em;
+}
+
+.close-nav-btn {
+  position: absolute;
+  color: var(--text-accent);
+  font-size: 3rem; /* 48px */
+}
+
+.open-nav-btn {
+  margin-left: auto;
+  color: var(--white);
+  font-size: 1.5rem; /* 24px */
 }
 
 /* ====== HERO SECTION ======  */

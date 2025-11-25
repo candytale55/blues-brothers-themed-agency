@@ -13,6 +13,7 @@ This document covers the structure and styling of the header and navigation bar 
 └── <div class="header-content">
     ├── <a class="logo-link" href="./index.html">
     │   └── <img class="logo header-logo" src="./src/images/logo.svg">
+    ├── <button class="open-nav-btn" aria-label="Open navigation">
     └── <nav class="header-nav">
         ├── <button class="close-nav-btn" aria-label="Close navigation">
         └── <ul class="nav-list">
@@ -26,17 +27,19 @@ This document covers the structure and styling of the header and navigation bar 
 
 ### Classes Reference
 
-| Element      | Class(es)            | Purpose                                                  |
-| ------------ | -------------------- | -------------------------------------------------------- |
-| `<header>`   | `.header .main-grid` | Semantic container for site navigation using global grid |
-| `<div>`      | `.header-content`    | Wrapper for logo and navigation, enables flexbox layout  |
-| `<a>` (logo) | `.logo-link`         | Link wrapping the logo with yellow background styling    |
-| `<img>`      | `.logo .header-logo` | Site logo/brand image with responsive sizing             |
-| `<nav>`      | `.header-nav`        | Semantic navigation container (full-screen overlay)      |
-| `<button>`   | `.close-nav-btn`     | Button to close mobile navigation overlay                |
-| `<ul>`       | `.nav-list`          | Unordered list containing navigation links, uses flexbox |
-| `<li>`       | `.nav-element`       | Individual navigation item wrapper                       |
-| `<a>` (nav)  | `.nav-link .link`    | Navigation link with styling and hover states            |
+| Element          | Class(es)              | Purpose                                                  |
+| ---------------- | ---------------------- | -------------------------------------------------------- |
+| `<header>`       | `.header .main-grid`   | Semantic container for site navigation using global grid |
+| `<div>`          | `.header-content`      | Wrapper for logo and navigation, enables flexbox layout  |
+| `<a>` (logo)     | `.logo-link`           | Link wrapping the logo with yellow background styling    |
+| `<img>`          | `.logo .header-logo`   | Site logo/brand image with responsive sizing             |
+| `<button>` (open)| `.open-nav-btn`        | Hamburger button (☰) to open mobile navigation           |
+| `<nav>`          | `.header-nav`          | Semantic navigation container (full-screen overlay)      |
+| `<nav>` (open)   | `.navigation-open`     | Class added to `.header-nav` to show navigation          |
+| `<button>` (close)| `.close-nav-btn`      | Button (×) to close mobile navigation overlay            |
+| `<ul>`           | `.nav-list`            | Unordered list containing navigation links, uses flexbox |
+| `<li>`           | `.nav-element`         | Individual navigation item wrapper                       |
+| `<a>` (nav)      | `.nav-link .link`      | Navigation link with styling and hover states            |
 
 ### Implementation Notes
 
@@ -101,46 +104,72 @@ This is the **key part** for understanding mobile navigation. The navigation cre
 
 **Step-by-Step Breakdown:**
 
-**Step 1: Position the Navigation as Full-Screen Overlay**
+**Step 1: Position the Navigation as Full-Screen Overlay (Hidden by Default)**
 
 ```css
 .header-nav {
-  position: fixed;
   background-color: var(--bg-secondary);
+  width: 100%;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
+  left: 100%; /* Hides nav off-screen to the right */
+  transform: translateX(0);
+  transition: transform 250ms;
+}
+
+.navigation-open {
+  transform: translateX(-100%); /* Slides nav into view */
 }
 ```
 
 **What each property does:**
 
 1. **`position: fixed;`**
-
    - **Removes the nav from normal document flow** (it floats above everything)
    - **Stays in the same position** even when you scroll
    - Think of it as a layer that sits on top of your page
 
-2. **`top: 0; right: 0; bottom: 0; left: 0;`**
-
-   - **Stretches the navigation to fill the entire screen** (all four edges at 0)
+2. **`top: 0; right: 0; bottom: 0;`**
+   - **Stretches the navigation vertically** to fill full screen height
    - `top: 0` = stick to top of viewport
-   - `right: 0` = stick to right edge
+   - `right: 0` = ensure right edge touches viewport right
    - `bottom: 0` = stick to bottom edge
-   - `left: 0` = stick to left edge
-   - **Result:** Navigation covers 100% of screen width and height
 
-3. **`background-color: var(--bg-secondary);`**
+3. **`left: 100%;`** ⭐ **KEY PROPERTY**
+   - **Hides navigation off-screen** by pushing it 100% to the right
+   - Navigation is positioned just outside the visible viewport
+   - By default, navigation is **hidden** and won't block content
+
+4. **`width: 100%;`**
+   - Navigation panel is full viewport width
+   - Ensures complete coverage when visible
+
+5. **`transform: translateX(0);`**
+   - Initial transform state (no movement)
+   - Provides starting point for animation
+
+6. **`transition: transform 250ms;`**
+   - **Animates the sliding motion** when navigation opens/closes
+   - 250ms = smooth, quick animation (1/4 second)
+   - Only animates the `transform` property (performance-friendly)
+
+7. **`.navigation-open` class with `transform: translateX(-100%);`**
+   - When JavaScript adds this class, nav **slides into view**
+   - `-100%` moves nav left by its full width (brings it on-screen)
+   - Combined with `left: 100%`, this positions nav perfectly at `left: 0`
+
+8. **`background-color: var(--bg-secondary);`**
    - Black background covers everything behind it
    - Without this, you'd see content through the overlay
 
 **Why this approach:**
-
-- **Full-screen overlay is easier** than trying to position menu in corner
-- **Simple to hide/show** with JavaScript (we'll add this with hamburger button)
+- **Hidden by default:** Navigation doesn't block content on page load
+- **Smooth animation:** Transform is GPU-accelerated, performs better than animating `left`
+- **Simple toggle:** Single class addition/removal shows/hides navigation
 - **Mobile-friendly:** Large touch targets, no cramped menus
-- **Visually dramatic:** Clear focus on navigation when open
+- **Visually dramatic:** Slides in from right with smooth animation
 
 **Step 2: Center Navigation Links Vertically and Horizontally**
 
@@ -270,30 +299,126 @@ This is the **key part** for understanding mobile navigation. The navigation cre
 </nav>
 ```
 
+#### Hamburger Button (Open Navigation)
+
+**Step 5: Add Hamburger Button to Open Navigation**
+
+```css
+/* Currently no specific styling - inherits default button styles */
+/* Button positioned in .header-content via flexbox */
+```
+
+**HTML structure:**
+
+```html
+<div class="header-content">
+  <a class="logo-link" href="./index.html">
+    <img class="logo header-logo" src="./src/images/logo.svg" />
+  </a>
+  <button class="open-nav-btn" aria-label="Open navigation">
+    &#9776; <!-- HTML entity for hamburger icon ☰ -->
+  </button>
+</div>
+```
+
+**Design decisions:**
+
+1. **HTML entity `&#9776;` for hamburger icon**
+   - Creates ☰ symbol without needing icon library
+   - Simple, semantic, no dependencies
+   - Accessible to screen readers
+
+2. **Positioned in `.header-content`**
+   - Sits in normal document flow next to logo
+   - Flexbox in `.header-content` handles positioning
+   - Always visible (not hidden like navigation)
+
+3. **`aria-label="Open navigation"`**
+   - Provides context for screen readers
+   - Users understand button purpose even if icon isn't clear
+
+**TODO:** Add CSS styling for `.open-nav-btn` (currently uses default button styles)
+
+#### JavaScript Toggle Functionality
+
+**Step 6: Add JavaScript to Show/Hide Navigation**
+
+```javascript
+// Get navigation and button elements
+const headerNav = document.querySelector(".header-nav");
+const closeNavBtn = document.querySelector(".close-nav-btn");
+const openNavBtn = document.querySelector(".open-nav-btn");
+
+// Close navigation when close button clicked
+closeNavBtn.addEventListener("click", () => {
+  headerNav.classList.remove("navigation-open");
+});
+
+// Open navigation when hamburger button clicked
+openNavBtn.addEventListener("click", () => {
+  headerNav.classList.add("navigation-open");
+});
+```
+
+**How it works:**
+
+1. **Select DOM elements**
+   - `querySelector` finds elements by CSS class
+   - Stores references in variables for reuse
+
+2. **Add event listeners**
+   - `addEventListener("click", callback)` runs code when button clicked
+   - Arrow functions provide clean syntax
+
+3. **Toggle `.navigation-open` class**
+   - **Opening:** `classList.add("navigation-open")` triggers transform animation
+   - **Closing:** `classList.remove("navigation-open")` reverses animation
+   - CSS `transition` property handles smooth sliding
+
+4. **Result:**
+   - Click hamburger → navigation slides in from right
+   - Click × button → navigation slides out to right
+   - No page refresh, smooth user experience
+
+**Why this approach:**
+- **Simple and clear:** Two event listeners, easy to understand
+- **No complex state management:** Just add/remove one class
+- **Leverages CSS:** Animation handled by CSS `transition`, not JavaScript
+- **Performant:** Class toggling is fast, transform is GPU-accelerated
+
 ### How This All Works Together
 
 **The Big Picture:**
 
-1. **Logo stays in normal position** at top of page (`.header-content` with `display: flex`)
-2. **Navigation floats on top** as full-screen overlay (`.header-nav` with `position: fixed`)
-3. **Links are centered** in the overlay (`.nav-list` with flexbox centering)
-4. **Close button floats in corner** (absolute positioning within fixed nav)
-5. **Large, touch-friendly elements** easy to tap on mobile
+1. **Logo and hamburger button stay in normal position** at top of page (`.header-content` with `display: flex`)
+2. **Navigation is hidden off-screen** by default (`left: 100%` pushes it to the right)
+3. **Click hamburger button** → JavaScript adds `.navigation-open` class
+4. **Navigation slides into view** (`transform: translateX(-100%)` brings it on-screen)
+5. **Navigation floats on top** as full-screen overlay (`.header-nav` with `position: fixed`)
+6. **Links are centered** in the overlay (`.nav-list` with flexbox centering)
+7. **Close button floats in corner** (absolute positioning within fixed nav)
+8. **Click × button** → JavaScript removes `.navigation-open` class
+9. **Navigation slides out** (returns to `left: 100%` position off-screen)
+10. **Large, touch-friendly elements** easy to tap on mobile
 
-**Current state:** Navigation is always visible (no toggle yet)
+**Current state:** ✅ Fully functional mobile navigation with toggle and smooth animation
 
-**Next step (TODO):** Add hamburger button and JavaScript to show/hide `.header-nav`
+**Next step:** Add desktop/tablet responsive navigation (horizontal bar instead of overlay)
 
 ### Responsive Behavior
 
 **Current State - Mobile (< 600px):**
 
-- Full-screen navigation overlay (always visible - no toggle yet)
+- ✅ Full-screen navigation overlay with toggle functionality
+- ✅ Hamburger button (☰) in header to open navigation
+- ✅ Navigation hidden by default (`left: 100%`)
+- ✅ Smooth slide-in animation (250ms transform)
 - Logo visible at top in normal document flow
 - Navigation links centered vertically and horizontally
 - Large touch-friendly text (3rem / 48px)
 - Links stacked vertically with even spacing
-- Close button in top-left corner (yellow × symbol)
+- Close button (×) in top-left corner of navigation overlay
+- JavaScript toggle adds/removes `.navigation-open` class
 
 **Planned - Tablet and Desktop (≥ 600px):**
 
@@ -399,23 +524,57 @@ This is the **key part** for understanding mobile navigation. The navigation cre
    - Absolute positioning keeps it in corner without disrupting flexbox
    - Large size (3rem) makes it easy to tap
 
-7. **Semantic HTML:**
+7. **Hamburger button for toggle control:**
+
+   - HTML entity `&#9776;` (☰) provides icon without dependencies
+   - Positioned in header via flexbox (always visible)
+   - Opens navigation when clicked
+
+8. **Hidden by default with smooth animation:**
+
+   - `left: 100%` hides navigation off-screen initially
+   - `transform` animation is GPU-accelerated (better performance)
+   - 250ms transition provides quick, smooth slide effect
+   - Single class toggle (`.navigation-open`) controls visibility
+
+9. **Semantic HTML:**
    - `<header>` and `<nav>` elements improve accessibility and SEO
    - Screen readers understand document structure
-   - `aria-label` on close button provides context for assistive technology
+   - `aria-label` on both buttons provides context for assistive technology
+   - HTML entities for icons maintain accessibility
 
 ### TODOs
 
-- [ ] Test responsive navigation on mobile devices (consider hamburger menu for very small screens)
-- [ ] Add active state styling to indicate current page (e.g., underline or color change)
-- [ ] Test keyboard navigation and ensure proper focus indicators
-- [ ] Consider sticky/fixed positioning for navigation bar on scroll
-- [ ] Add smooth scroll behavior when navigating to anchor links
+**High Priority (Current Mobile Navigation):**
+- [x] ~~Create full-screen mobile navigation overlay~~ ✓ Completed
+- [x] ~~Add close button (×) inside navigation overlay~~ ✓ Completed
+- [x] ~~Add hamburger button (☰) to header for toggle control~~ ✓ Completed
+- [x] ~~Add JavaScript to show/hide `.header-nav` (toggle class)~~ ✓ Completed
+- [x] ~~Hide navigation by default~~ ✓ Completed (`left: 100%`)
+- [x] ~~Add smooth transition animation when opening/closing menu~~ ✓ Completed (250ms transform)
+- [x] ~~Connect close button to JavaScript toggle function~~ ✓ Completed
+- [ ] **Add CSS styling for `.open-nav-btn`** (currently uses default styles)
+- [ ] Add fade-in effect for navigation links (stagger animation)
+- [ ] Close navigation when clicking outside overlay
+- [ ] Close navigation when pressing Escape key
+
+**Medium Priority (Responsive Enhancement):**
+- [ ] Create horizontal desktop navigation (600px+ breakpoint)
+- [ ] Add media query to convert full-screen overlay to horizontal bar on tablet/desktop
+- [ ] Hide hamburger and close buttons on desktop navigation
+- [ ] Adjust logo sizing for larger screens
+- [ ] Test navigation at different breakpoints (600px, 768px, 1024px)
+
+**Low Priority (Polish & Accessibility):**
+- [ ] Add active state styling to indicate current page
+- [ ] Test keyboard navigation (Tab, Enter, Esc to close menu)
 - [ ] Test with screen readers for accessibility compliance
-- [ ] Consider logo animation on page load or hover
-- [ ] Add transition effects for hover states on navigation links
-      display: block; /_ Prevents inline spacing issues _/
-      }
+- [ ] Add focus trap in mobile menu (prevent tabbing to content behind overlay)
+- [ ] Consider adding backdrop blur effect to navigation overlay
+- [ ] Add smooth scroll behavior when navigating to anchor links
+- [ ] Test on actual mobile devices for touch interaction
+- [ ] Add hover effect to hamburger and close buttons for visual feedback
+- [ ] Improve hamburger button styling (size, color, positioning)
 
 ````
 
