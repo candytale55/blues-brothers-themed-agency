@@ -9,65 +9,149 @@ This document covers the structure and styling of the header and navigation bar 
 ### Structure Diagram
 
 ```
-<header>
-└── <nav class="main-nav main-grid">
-    ├── <div class="logo-container">
-    │   └── <a href="./index.html">
-    │       └── <img class="logo" src="./src/images/logo.svg">
-    └── <ul class="nav-list">
-        ├── <li class="nav-element">
-        │   └── <a href="./index.html" class="nav-link link">
-        ├── <li class="nav-element">
-        │   └── <a href="./about.html" class="nav-link link">
-        └── <li class="nav-element">
-            └── <a href="./contact.html" class="nav-link link">
+<header class="header main-grid">
+└── <div class="header-content">
+    ├── <a class="logo-link" href="./index.html">
+    │   └── <img class="logo header-logo" src="./src/images/logo.svg">
+    └── <nav class="header-nav">
+        └── <ul class="nav-list">
+            ├── <li class="nav-element">
+            │   └── <a href="./index.html" class="nav-link link">
+            ├── <li class="nav-element">
+            │   └── <a href="./about.html" class="nav-link link">
+            └── <li class="nav-element">
+                └── <a href="./contact.html" class="nav-link link">
 ```
 
 ### Classes Reference
 
-| Element      | Class(es)              | Purpose                                       |
-| ------------ | ---------------------- | --------------------------------------------- |
-| `<header>`   | (none)                 | Semantic container for site navigation        |
-| `<nav>`      | `.main-nav .main-grid` | Navigation container using global grid layout |
-| `<div>`      | `.logo-container`      | Wrapper for logo image and link               |
-| `<a>` (logo) | (none)                 | Link wrapping the logo image                  |
-| `<img>`      | `.logo`                | Site logo/brand image                         |
-| `<ul>`       | `.nav-list`            | Unordered list containing navigation links    |
-| `<li>`       | `.nav-element`         | Individual navigation item wrapper            |
-| `<a>` (nav)  | `.nav-link .link`      | Navigation link with styling                  |
+| Element      | Class(es)            | Purpose                                                  |
+| ------------ | -------------------- | -------------------------------------------------------- |
+| `<header>`   | `.header .main-grid` | Semantic container for site navigation using global grid |
+| `<div>`      | `.header-content`    | Wrapper for logo and navigation, enables flexbox layout  |
+| `<a>` (logo) | `.logo-link`         | Link wrapping the logo with yellow background styling    |
+| `<img>`      | `.logo .header-logo` | Site logo/brand image with responsive sizing             |
+| `<nav>`      | `.header-nav`        | Semantic navigation container                            |
+| `<ul>`       | `.nav-list`          | Unordered list containing navigation links, uses flexbox |
+| `<li>`       | `.nav-element`       | Individual navigation item wrapper                       |
+| `<a>` (nav)  | `.nav-link .link`    | Navigation link with styling and hover states            |
 
 ### Implementation Notes
 
 #### Layout Strategy
 
-The navigation uses the **global grid layout** (`.main-grid` class) for consistent centering with other page sections:
+The header uses a **two-level layout approach**:
+
+1. **Global grid (`.main-grid`)** on `<header>` for horizontal centering
+2. **Flexbox layout** on `.header-content` for logo and navigation positioning
 
 ```css
-.main-nav {
-  /* Uses .main-grid for three-column layout */
+/* Header spans full width with global grid */
+.header {
+  background-color: var(--bg-secondary); /* Black background */
+}
+
+/* Content wrapper uses flexbox for horizontal layout */
+.header-content {
+  grid-column: 2 / -2; /* Placed in middle content column */
+  display: flex;
+  justify-content: space-between; /* Logo left, nav right */
+  align-items: flex-end; /* Aligns logo bottom with nav baseline */
 }
 ```
 
-**Content placement:**
+**Why this structure:**
 
-- Logo and navigation links placed within the middle content column (max 500px width)
-- Flexible margins on left and right ensure content never touches viewport edges
-- Uses the same grid structure as hero, info, and footer sections
+- `.main-grid` provides consistent horizontal margins with other sections
+- Flexbox in `.header-content` handles logo/nav positioning without additional grid complexity
+- `align-items: flex-end` ensures logo container aligns properly with navigation links
 
-#### Navigation Styling
+#### Logo Styling
 
-**Logo:**
+**Yellow background container:**
 
-- SVG format for crisp display at any size
-- Wrapped in link for homepage navigation
-- Alt text provides accessibility
+````css
+### Responsive Behavior
 
-**Navigation Links:**
+**Mobile (375px baseline):**
+- Logo and navigation in single row via flexbox
+- Logo on left, navigation links on right
+- Compact spacing appropriate for smaller screens
 
-- Horizontal list on larger viewports
-- Semantic `<nav>` element for accessibility
-- Links styled consistently with site theme
-- Hover/focus states for user feedback
+**Tablet and Desktop (600px+):**
+```css
+@media (min-width: 600px) {
+  .logo-link {
+    padding: 2.5em 0 0 0; /* Increased height */
+  }
+
+  .logo-link img {
+    max-height: 3.5em; /* Slightly larger logo (~56px) */
+  }
+}
+````
+
+- More generous vertical spacing
+- Larger logo for better visibility on larger screens
+- Navigation maintains horizontal layout
+
+### Design Decisions
+
+1. **Nested layout approach:** Global grid for horizontal centering, flexbox for logo/nav positioning keeps code clean and maintainable
+
+2. **Yellow logo container:** Distinctive visual element that extends full nav height, creating strong brand presence
+
+3. **Flexible logo sizing:** Using `height: 100%` with `max-height` cap ensures logo scales appropriately across all screen sizes
+
+4. **Semantic HTML:** `<header>` and `<nav>` elements improve accessibility and SEO
+
+5. **Black background:** High contrast with white text and yellow logo ensures readability
+
+### TODOs
+
+- [ ] Test responsive navigation on mobile devices (consider hamburger menu for very small screens)
+- [ ] Add active state styling to indicate current page (e.g., underline or color change)
+- [ ] Test keyboard navigation and ensure proper focus indicators
+- [ ] Consider sticky/fixed positioning for navigation bar on scroll
+- [ ] Add smooth scroll behavior when navigating to anchor links
+- [ ] Test with screen readers for accessibility compliance
+- [ ] Consider logo animation on page load or hover
+- [ ] Add transition effects for hover states on navigation links
+      display: block; /_ Prevents inline spacing issues _/
+      }
+
+````
+
+**Key features:**
+- Yellow background extends full navigation height via padding
+- Logo scales proportionally at any viewport size
+- `max-height` prevents logo from becoming too large
+- `display: block` eliminates unwanted inline spacing
+
+#### Navigation Links
+
+**Horizontal list layout:**
+```css
+.nav-list {
+  display: flex;
+  list-style: none; /* Removes bullet points */
+  margin-left: auto; /* Pushes nav to right side */
+}
+
+.nav-link {
+  color: var(--text-secondary); /* White text */
+  font-weight: var(--font-weight-bold);
+  padding: 0.5em; /* Clickable area */
+  margin-left: 1em; /* Spacing between links */
+  text-decoration: none;
+}
+````
+
+**Interactive states:**
+
+- Hover/focus states provide visual feedback
+- Bold font weight improves readability on dark background
+- Adequate padding ensures accessible touch targets (minimum 44px)
 
 ### Design Decisions
 
