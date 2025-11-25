@@ -1,91 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jake & Elwood Agency</title>
 
-    <!-- link to google fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jake & Elwood Agency</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="/src/css/variables.css" />
-    <link rel="stylesheet" href="/src/css/style.css" />
-  </head>
+  <!-- link to google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
 
-  <body>
-    <header>
-      <nav class="main-nav main-grid">
-        <div class="logo-container">
-          <a href="./index.html">LOGO</a>
-        </div>
-        <ul class="nav-list">
-          <li class="nav-element">
-            <a href="./index.html" class="nav-link link">Home</a>
-          </li>
-          <li class="nav-element">
-            <a href="./about.html" class="nav-link link">About us</a>
-          </li>
-          <li class="nav-element">
-            <a href="./contact.html" class="nav-link link">Contact</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+  <!-- https://cdnjs.com/libraries/font-awesome -->
 
-    <main>
-      <section class="hero main-grid">
-        <h1 class="hero-title">
-          The only marketing agency on <span class="accent-text">a mission from God</span>,
-          fully dedicated to increase your web traffic.
-        </h1>
-        <p>
-          We're two brothers from Chicago that are trying to pay back our debt.
-          We can help you with SEO, SEM content marketing and whatever else.
-        </p>
-        <a href="./contact.html" class="btn hero-btn">Contact us</a>
-      </section>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/src/css/variables.css" />
+  <link rel="stylesheet" href="/src/css/style.css" />
+</head>
 
-      <section class="info  main-grid">
-        <div class="info-card">
-          <h2 class="card-title">About Us</h2>
-          <p>
-            We grew up in downtown Chicago, and we used to play in a band. <strong>Jake loves fried chicken</strong>, and <strong>Elwood loves dry white toast</strong>.
-          </p>
-        </div>
+<body>
+  <header>
+    <nav class="main-nav main-grid">
+      <div class="logo-container">
+        <a href="./index.html">
+          <img class="logo" src="./src/images/logo.svg" alt="Jake & Elwood Logo" /></a>
+      </div>
+      <ul class="nav-list">
+        <li class="nav-element">
+          <a href="./index.html" class="nav-link link">Home</a>
+        </li>
+        <li class="nav-element">
+          <a href="./about.html" class="nav-link link">About us</a>
+        </li>
+        <li class="nav-element">
+          <a href="./contact.html" class="nav-link link">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-        <div class="info-card">
-          <h2 class="card-title">Our skills</h2>
-          <p>
-            Elwood is an expert in <strong>SEO, SEM, and driving from the police</strong>. Jake
-            is our <strong>social media specialist</strong>, and he has an amazing voice.
-          </p>
-        </div>
-
-        <div class="info-card">
-          <h2 class="card-title">Get in touch</h2>
-          <p>
-            Send us an email with some info about what help you <strong>we'll drive over to your place</strong> in our Bluesmobile the following day to discuss the deal.
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer  main-grid">
+  <main>
+    <section class="hero main-grid">
+      <h1 class="hero-title">
+        The only marketing agency on
+        <span class="accent-text">a mission from God</span>, fully dedicated
+        to increase your web traffic.
+      </h1>
       <p>
-        Two brothers from Chicago that are just trying to pay back their debt by
-        helping others with their SEO, SEM, and Content Marketing needs.
+        We're two brothers from Chicago that are trying to pay back our debt.
+        We can help you with SEO, SEM content marketing and whatever else.
       </p>
-      <p class="copyright">
+      <a href="./contact.html" class="btn hero-btn">Contact us</a>
+    </section>
+
+    <section class="info main-grid">
+      <div class="info-card">
+        <h2 class="card-title">About Us</h2>
+        <p>
+          We grew up in downtown Chicago, and we used to play in a band.
+          <strong>Jake loves fried chicken</strong>, and
+          <strong>Elwood loves dry white toast</strong>.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h2 class="card-title">Our skills</h2>
+        <p>
+          Elwood is an expert in
+          <strong>SEO, SEM, and driving from the police</strong>. Jake is our
+          <strong>social media specialist</strong>, and he has an amazing
+          voice.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h2 class="card-title">Get in touch</h2>
+        <p>
+          Send us an email with some info about what help you
+          <strong>we'll drive over to your place</strong> in our Bluesmobile
+          the following day to discuss the deal.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer main-grid">
+    <div class="footer-main-container">
+      <img class="logo" src="./src/images/logo.svg" alt="Jake & Elwood Logo" />
+      <p>
+        Two brothers from Chicago that are just trying to pay back their debt
+        by helping others with their SEO, SEM, and Content Marketing needs.
+      </p>
+      <p class="copyright-fineprint">
         &copy; Jake&Elwood <span class="copy-year">2019</span>
       </p>
-    </footer>
+    </div>
+    <ul class="rss-links-list">
+      <li class="rss-item">
+        <a href="#" class="link rss-link">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+      </li>
+      <li class="rss-item">
+        <a href="#" class="link rss-link">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+      </li>
+      <li class="rss-item">
+        <a href="#" class="link rss-link">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </li>
+      <li class="rss-item">
+        <a href="#" class="link rss-link">
+          <i class="fa-brands fa-square-instagram"></i></i>
+        </a>
+      </li>
+    </ul>
+  </footer>
 
-    <!-- JavaScript -->
-    <script type="module" src="/src/js/main.js"></script>
-  </body>
+  <!-- JavaScript -->
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+
 </html>

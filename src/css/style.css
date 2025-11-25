@@ -18,12 +18,15 @@ body {
   height: 100vh;
 }
 
+
+
 /* ------ Typography ------- */
 
 h1 {
   font-weight: var(--font-weight-bold);
   font-size: 1.5rem; /* 24px */
   line-height: 1.4;
+  margin-bottom: 1rem; /* 16px */
 }
 
 .accent-text {
@@ -45,6 +48,8 @@ h2 {
 /* .info {
   font-size: 1.125rem; /* 18px */
 /*} */
+
+
 
 .hero-title {
   font-size: 1.5rem; /* 24px */
@@ -86,6 +91,8 @@ ul,
 ol {
   list-style: none;
 }
+
+
 
 /* Remove underlines and inherit parent color for custom link styling */
 a {
@@ -189,6 +196,50 @@ select {
   margin-bottom: 2em;
 }
 
-
 /* ====== FOOTER SECTION ======  */
 
+.footer {
+  background-color: var(--bg-footer);
+  padding: 4em 0;
+  text-align: center;
+}
+
+.footer-main-container,
+.rss-links-list {
+  grid-column: 2 / -2;
+}
+
+
+.rss-links-list {
+  order: -1; /* Move social-media icons to the top of the footer */
+  display: flex; 
+  justify-content: center;
+  gap: 1.5em;
+  margin-bottom: 2em;
+}
+
+.rss-link {
+  font-size: 1.5rem  /* 24px */;
+  color: var(--text-title-color);
+}
+
+.rss-link:hover,
+.rss-link:focus {
+  color: var(--btn-hover-text);
+}
+
+.footer p{
+  margin-bottom: 1.25em;
+}
+
+.copyright-fineprint {
+  font-size: 0.875rem; /* 14px */
+}
+
+.footer .logo {
+  margin: 1em 0;
+}
+
+.footer p, .footer .logo {
+  opacity: 0.9;
+}

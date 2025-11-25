@@ -8,6 +8,7 @@
   --dark-gray: #404040;
   --light-gray: #ebebeb;
   --yellow: #ffe600;
+  --medium-gray: #777777;
 
   /* Typography */
   --font-family-base: Montserrat, sans-serif;
@@ -21,6 +22,7 @@
   --bg-primary: var(--white);
   --bg-secondary: var(--black);
   --bg-accent: var(--yellow);
+  --bg-footer: var(--light-gray);
   /* --bg-dark: ; */
   /* --bg-light: ; */
   /* --bg-white: ; */
@@ -45,7 +47,7 @@
   /* --btn-text-primary: ; */
   /* --btn-text-secondary: ; */
   /* --btn-hover-bg: ; */
-  /* --btn-hover-text: ; */
+  --btn-hover-text: var(--medium-gray); 
 
   /* Semantic Colors */
   /* --color-success: ; */

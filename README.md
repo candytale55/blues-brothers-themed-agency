@@ -40,6 +40,7 @@ res-jake-elwood/
 - CSS3 (Custom Properties, Flexbox, Grid)
 - JavaScript (ES6+)
 - Google Fonts (Montserrat)
+- Font Awesome 7.0.1 (Icon Library via CDN)
 
 ## Color Palette
 
@@ -59,12 +60,19 @@ res-jake-elwood/
 
 This project follows specific development conventions documented in `agents.md`, including:
 
-- Mobile-first CSS approach (baseline: 390px)
+- Mobile-first CSS approach (baseline: 375px)
 - Semantic class naming conventions
 - Comprehensive inline comments for learning
 - Section-based code organization
 
+## External Resources
+
+- **Google Fonts:** [Montserrat](https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap)
+- **Font Awesome:** [v7.0.1 via CDN](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css)
+  - Icon Library: https://fontawesome.com/
+  - CDN Provider: https://cdnjs.com/libraries/font-awesome
+
 ## Links and References
 
 - Figma design: [Jake & Elwood](https://xd.adobe.com/spec/f255d364-6d5e-4aaf-7703-6f8d0a398281-8464/grid/)
-- Based on a tutorial in Scrimba's [_Learn Responsive Web Design_](https://scrimba.com/learn-responsive-web-design-c029)
+- Based on a tutorial in Scrimba's [_Learn Responsive Web Design_](https://scrimba.com/learn-responsive-web-design-c029) 
