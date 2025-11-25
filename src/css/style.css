@@ -194,18 +194,36 @@ header {
   padding-top: 2em;
 }
 
-
+.header-nav {
+  position: fixed;
+  background-color: var(--bg-secondary);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; 
+}
 
 .nav-list {
+  /* border: 2px solid orangered; */ /*TODO: REMOVE*/
+  height: 100%;  
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
 
 .nav-link {
   color: var(--white);
+  font-size: 3rem; /* 48px */
   font-weight: var(--font-weight-bold);
-  padding-left: 3.5em;
+  text-transform: lowercase;
 }
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--text-accent);
+  text-decoration: none;
+} 
 
 /* ====== HERO SECTION ======  */
 
