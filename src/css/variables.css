@@ -3,14 +3,11 @@
 :root {
   /* TODO: Add CSS variables here */
 
-
-  --white:      #FFFFFF;
-  --black:      #000000;
-  --dark-gray:  #404040;
-  --light-gray: #EBEBEB;
-  --yellow:     #FFE600;
-
-
+  --white: #ffffff;
+  --black: #000000;
+  --dark-gray: #404040;
+  --light-gray: #ebebeb;
+  --yellow: #ffe600;
 
   /* Typography */
   --font-family-base: Montserrat, sans-serif;
@@ -20,20 +17,19 @@
   --font-weight-bold: 700;
   --line-height-base: 1.5;
 
-  
   /* Background Colors */
-  --bg-primary:     var(--white); 
-  --bg-secondary:   var(--black); 
-  --bg-accent:      var(--yellow); 
+  --bg-primary: var(--white);
+  --bg-secondary: var(--black);
+  --bg-accent: var(--yellow);
   /* --bg-dark: ; */
   /* --bg-light: ; */
   /* --bg-white: ; */
 
   /* Text Colors */
-  --text-primary:       var(--dark-gray); 
-  --text-title-color:   var(--black); 
-  /* --text-secondary: ; */
-  --text-accent:        var(--yellow); 
+  --text-primary: var(--dark-gray);
+  --text-title-color: var(--black);
+  --text-secondary: var(--white);
+  --text-accent: var(--yellow);
   /* --text-light: ; */
   /* --text-dark: ; */
   /* --text-white: ; */
@@ -56,4 +52,10 @@
   /* --color-warning: ; */
   /* --color-error: ; */
   /* --color-info: ; */
+
+  /* Breakpoints - Mobile-first approach (375px baseline) */
+  /* --breakpoint-mobile: 375px; */
+  /* --breakpoint-tablet: 768px; */
+  /* --breakpoint-desktop: 1024px; */
+  /* --breakpoint-wide: 1440px; */
 }
