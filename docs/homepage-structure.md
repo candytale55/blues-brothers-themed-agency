@@ -30,24 +30,51 @@ This document covers the structure and styling of the main sections on the homep
 
 #### Layout Strategy
 
-The hero section uses the **global grid layout** (`.main-grid` class) which provides a reusable three-column structure for consistent centering across multiple sections:
+The hero section uses the **global grid layout** (`.main-grid` class) which provides a reusable responsive structure:
+
+**Mobile (< 600px):**
 
 ```css
 .main-grid {
   display: grid;
   grid-template-columns: minmax(1em, 1fr) minmax(0px, 500px) minmax(1em, 1fr);
+  column-gap: 2em;
+}
+```
+
+**Tablet and up (≥ 600px):**
+
+```css
+@media (min-width: 600px) {
+  .main-grid {
+    grid-template-columns: minmax(1em, 1fr) repeat(
+        3,
+        minmax(180px, 320px)
+      ) minmax(1em, 1fr);
+  }
 }
 ```
 
 **How it works:**
 
-- **Column 1 (left margin):** `minmax(1em, 1fr)` - Flexible space with minimum 1em padding, grows to fill available space
-- **Column 2 (content):** `minmax(0px, 500px)` - Content area with maximum width of 500px
-- **Column 3 (right margin):** `minmax(1em, 1fr)` - Flexible space with minimum 1em padding, grows to fill available space
+**Mobile layout (3 columns):**
 
-The `1fr` units make the left and right columns grow equally, creating **automatic horizontal centering** without using `margin: 0 auto`. The minimum 1em ensures content never touches viewport edges on mobile.
+- **Column 1 (left margin):** `minmax(1em, 1fr)` - Flexible space with minimum 1em padding
+- **Column 2 (content):** `minmax(0px, 500px)` - Content area with maximum width of 500px
+- **Column 3 (right margin):** `minmax(1em, 1fr)` - Flexible space with minimum 1em padding
+
+**Tablet/Desktop layout (5 columns):**
+
+- **Column 1 (left margin):** `minmax(1em, 1fr)` - Flexible left margin
+- **Columns 2-4 (content):** `repeat(3, minmax(180px, 320px))` - Three equal content columns, each 180-320px wide
+- **Column 5 (right margin):** `minmax(1em, 1fr)` - Flexible right margin
+- **Column gap:** `2em` creates space between content columns
+
+The `1fr` units make the margin columns grow equally, creating **automatic horizontal centering** without using `margin: 0 auto`. The minimum 1em ensures content never touches viewport edges on mobile.
 
 **Content Placement:**
+
+**Mobile:**
 
 ```css
 .hero > * {
@@ -55,7 +82,19 @@ The `1fr` units make the left and right columns grow equally, creating **automat
 }
 ```
 
-This selector places all direct children of `.hero` into column 2 (the content area). The `-2` value counts from the end, ensuring content stays in the middle column even if the grid structure changes.
+Places all hero content in column 2 (the single content column).
+
+**Tablet and up (≥ 600px):**
+
+```css
+@media (min-width: 600px) {
+  .hero > * {
+    grid-column: 2 / span 2;
+  }
+}
+```
+
+Spans hero content across columns 2-3 (two of the three content columns), leaving one column empty for visual breathing room.
 
 **Why use a global grid class:**
 
@@ -79,13 +118,36 @@ color: var(--white);
 
 #### Spacing
 
+**Mobile:**
+
 ```css
 padding: 4em 0;
 ```
 
+**Tablet and up (≥ 600px):**
+
+```css
+@media (min-width: 600px) {
+  .hero {
+    padding: 6em 0;
+  }
+}
+```
+
 - Vertical padding only (top and bottom)
-- `4em` = approximately 64px at base font size (16px)
+- Mobile: `4em` ≈ 64px at base font size
+- Tablet+: `6em` ≈ 96px for more dramatic hero section
 - Horizontal spacing handled by grid columns
+
+**Additional background properties:**
+
+```css
+background-size: cover;
+background-position: bottom;
+```
+
+- `cover` ensures image fills entire container while maintaining aspect ratio
+- `bottom` anchors image at bottom (keeps important content visible when cropped)
 
 #### Typography
 
@@ -171,7 +233,9 @@ The hero button combines two classes for specificity:
 
 #### Layout Strategy
 
-The info section uses the **global grid layout** (`.main-grid` class) for consistent centering with the hero section:
+The info section uses the **global grid layout** (`.main-grid` class) with responsive card positioning:
+
+**Mobile (< 600px):**
 
 ```css
 .info {
@@ -185,12 +249,30 @@ The info section uses the **global grid layout** (`.main-grid` class) for consis
 }
 ```
 
+**Tablet and up (≥ 600px):**
+
+```css
+@media (min-width: 600px) {
+  .info-card {
+    grid-column: span 1;
+  }
+
+  .info-card:first-child {
+    grid-column: 2 / span 1;
+  }
+}
+```
+
 **Key decisions:**
 
-- **Global grid:** Reuses `.main-grid` for consistent content width (max 500px)
-- **Vertical stacking:** Cards stack vertically in mobile-first layout
+- **Mobile:** Cards stack vertically in the single content column (column 2)
+- **Tablet+:** Cards display horizontally across three content columns (2, 3, 4)
+- **First card positioning:** `grid-column: 2 / span 1` explicitly starts the first card in column 2
+  - **Why this matters:** Without this rule, the first card would auto-place into column 1 (the margin column)
+  - This ensures all three cards stay within the content area (columns 2-4)
+  - Prevents cards from bleeding into the flexible margin columns
 - **Center alignment:** `text-align: center` centers all text content within cards
-- **Card spacing:** `margin-bottom: 2em` creates vertical space between cards
+- **Card spacing:** `margin-bottom: 2em` creates vertical space between stacked cards on mobile
 
 #### Spacing
 
@@ -233,12 +315,26 @@ strong {
 
 1. **Reusable grid:** Using `.main-grid` class promotes consistency and reduces CSS duplication
 2. **Mobile-first stacking:** Vertical card layout works naturally on narrow viewports
-3. **Center alignment:** Creates balanced, symmetric layout appropriate for marketing content
-4. **Consistent spacing:** Section padding matches hero for unified vertical rhythm
+3. **Responsive horizontal layout:** At 600px+, cards display side-by-side in three equal columns
+4. **Explicit first-child positioning:** Prevents auto-placement into margin column, ensuring all cards stay in content area
+5. **Center alignment:** Creates balanced, symmetric layout appropriate for marketing content
+6. **Consistent spacing:** Section padding matches hero for unified vertical rhythm
+7. **Column gap:** 2em gap between cards on larger screens provides visual separation
+
+### Responsive Behavior
+
+**Breakpoint: 600px**
+
+- Hero content expands to span 2 of 3 content columns
+- Hero padding increases from 4em to 6em for more impact
+- Info cards transition from vertical stack to horizontal three-column layout
+- Each card occupies one content column (columns 2, 3, and 4)
 
 ### TODOs
 
-- [ ] Add media queries to display cards in horizontal layout on tablet/desktop
+- [x] ~~Add media queries to display cards in horizontal layout on tablet/desktop~~ ✓ Completed
 - [ ] Consider adding icons or images to info cards for visual interest
 - [ ] Test card content with varying text lengths for layout stability
 - [ ] Evaluate if cards need background colors or borders for definition
+- [ ] Add media queries for larger breakpoints (768px, 1024px, 1440px)
+- [ ] Test grid behavior with different viewport sizes between 600-768px

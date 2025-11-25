@@ -56,8 +56,8 @@
   /* --color-info: ; */
 
   /* Breakpoints - Mobile-first approach (375px baseline) */
-  /* --breakpoint-mobile: 375px; */
-  /* --breakpoint-tablet: 768px; */
+  --breakpoint-mobile-base: 375px; 
+  --breakpoint-tablet: 768px;
   /* --breakpoint-desktop: 1024px; */
   /* --breakpoint-wide: 1440px; */
 }

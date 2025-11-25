@@ -6,6 +6,22 @@
   padding: 0;
 }
 
+/* ====== GENERAL LAYOUT ====== */
+
+.main-grid {
+  display: grid;
+  grid-template-columns: minmax(1em, 1fr) minmax(0px, 500px) minmax(1em, 1fr);
+  column-gap: 2em; 
+}
+
+@media (min-width: 600px) {
+  .main-grid {
+       grid-template-columns: minmax(1em, 1fr) repeat(3, minmax(180px, 320px)) minmax(1em, 1fr);
+  }
+}
+
+
+
 /* ========== GLOBAL STYLES ========== */
 
 body {
@@ -17,7 +33,6 @@ body {
   background-color: var(--bg-primary);
   height: 100vh;
 }
-
 
 
 /* ------ Typography ------- */
@@ -163,18 +178,15 @@ select {
   text-transform: uppercase;
 } */
 
-/* ====== GENERAL LAYOUT ====== */
 
-.main-grid {
-  display: grid;
-  grid-template-columns: minmax(1em, 1fr) minmax(0px, 500px) minmax(1em, 1fr); 
-}
 
 /* ====== HERO SECTION ======  */
 
 .hero {
   background-image: url(../images/hero-bg.jpg); /*TODO: Accessibility tags*/
+  background-size: cover;
   background-color: var(--bg-secondary);
+  background-position: bottom;
   color: var(--white);
   padding: 4em 0;
 }
@@ -183,6 +195,14 @@ select {
   grid-column: 2 / -2;
 }
 
+@media(min-width: 600px) {
+  .hero {
+    padding: 6em 0;
+  }
+ .hero > * {
+  grid-column: 2 / span 2;
+}
+}
 
 /* ====== INFO SECTION ======  */
 
@@ -194,6 +214,16 @@ select {
 .info-card {
   grid-column: 2 / -2;
   margin-bottom: 2em;
+}
+
+@media(min-width: 600px) {
+  .info-card {
+    grid-column: span 1;
+  }
+  .info-card:first-child {
+    grid-column: 2 / span 1;
+  }
+
 }
 
 /* ====== FOOTER SECTION ======  */
