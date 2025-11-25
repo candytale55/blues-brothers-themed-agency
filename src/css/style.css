@@ -110,7 +110,7 @@ ol {
 
 
 /* Remove underlines and inherit parent color for custom link styling */
-a {
+a, button {
   text-decoration: none;
   cursor: pointer;
 }
@@ -224,6 +224,16 @@ header {
   color: var(--text-accent);
   text-decoration: none;
 } 
+
+.close-nav-btn {
+  position: absolute;
+  border: 0;
+  background: 0;
+  color: var(--text-accent);
+  font-weight: var(--font-weight-bold);
+  font-size: 3rem; /* 48px */
+  padding: 0.5em;
+}
 
 /* ====== HERO SECTION ======  */
 

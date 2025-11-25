@@ -14,6 +14,7 @@ This document covers the structure and styling of the header and navigation bar 
     ├── <a class="logo-link" href="./index.html">
     │   └── <img class="logo header-logo" src="./src/images/logo.svg">
     └── <nav class="header-nav">
+        ├── <button class="close-nav-btn" aria-label="Close navigation">
         └── <ul class="nav-list">
             ├── <li class="nav-element">
             │   └── <a href="./index.html" class="nav-link link">
@@ -31,7 +32,8 @@ This document covers the structure and styling of the header and navigation bar 
 | `<div>`      | `.header-content`    | Wrapper for logo and navigation, enables flexbox layout  |
 | `<a>` (logo) | `.logo-link`         | Link wrapping the logo with yellow background styling    |
 | `<img>`      | `.logo .header-logo` | Site logo/brand image with responsive sizing             |
-| `<nav>`      | `.header-nav`        | Semantic navigation container                            |
+| `<nav>`      | `.header-nav`        | Semantic navigation container (full-screen overlay)      |
+| `<button>`   | `.close-nav-btn`     | Button to close mobile navigation overlay                |
 | `<ul>`       | `.nav-list`          | Unordered list containing navigation links, uses flexbox |
 | `<li>`       | `.nav-element`       | Individual navigation item wrapper                       |
 | `<a>` (nav)  | `.nav-link .link`    | Navigation link with styling and hover states            |
@@ -216,6 +218,58 @@ This is the **key part** for understanding mobile navigation. The navigation cre
    - Provides clear visual feedback
    - `text-decoration: none` removes underline (cleaner look)
 
+#### Close Button
+
+**Step 4: Add Close Button for User Convenience**
+
+```css
+.close-nav-btn {
+  position: absolute;
+  border: 0;
+  background: 0;
+  color: var(--text-accent);
+  font-weight: var(--font-weight-bold);
+  font-size: 3rem; /* 48px */
+  padding: 0.5em;
+}
+```
+
+**Design decisions:**
+
+1. **`position: absolute;`**
+
+   - Positions close button relative to `.header-nav` (which has `position: fixed`)
+   - Allows button to float in corner without affecting flexbox layout
+   - By default, will appear in top-left corner
+
+2. **`border: 0; background: 0;`**
+
+   - Removes default button styling
+   - Creates minimal, clean button appearance
+   - Only the × symbol is visible
+
+3. **`color: var(--text-accent);`**
+
+   - Yellow color makes button stand out
+   - Matches brand accent color
+   - Clearly visible against black background
+
+4. **Large size (3rem)**
+   - Easy to tap on mobile devices
+   - Matches navigation link sizing for consistency
+   - Meets accessibility touch target guidelines
+
+**HTML structure:**
+
+```html
+<nav class="header-nav">
+  <button class="close-nav-btn" aria-label="Close navigation">&times;</button>
+  <ul class="nav-list">
+    <!-- navigation links -->
+  </ul>
+</nav>
+```
+
 ### How This All Works Together
 
 **The Big Picture:**
@@ -223,37 +277,89 @@ This is the **key part** for understanding mobile navigation. The navigation cre
 1. **Logo stays in normal position** at top of page (`.header-content` with `display: flex`)
 2. **Navigation floats on top** as full-screen overlay (`.header-nav` with `position: fixed`)
 3. **Links are centered** in the overlay (`.nav-list` with flexbox centering)
-4. **Large, touch-friendly links** easy to tap on mobile
+4. **Close button floats in corner** (absolute positioning within fixed nav)
+5. **Large, touch-friendly elements** easy to tap on mobile
 
 **Current state:** Navigation is always visible (no toggle yet)
 
-**Next step (TODO):** Add hamburger button to show/hide `.header-nav` with JavaScript
+**Next step (TODO):** Add hamburger button and JavaScript to show/hide `.header-nav`
 
 ### Responsive Behavior
 
-**Mobile (375px baseline):**
+**Current State - Mobile (< 600px):**
 
-- Logo and navigation in single row via flexbox
-- Logo on left, navigation links on right
-- Compact spacing appropriate for smaller screens
+- Full-screen navigation overlay (always visible - no toggle yet)
+- Logo visible at top in normal document flow
+- Navigation links centered vertically and horizontally
+- Large touch-friendly text (3rem / 48px)
+- Links stacked vertically with even spacing
+- Close button in top-left corner (yellow × symbol)
 
-**Tablet and Desktop (600px+):**
+**Planned - Tablet and Desktop (≥ 600px):**
 
 ```css
+/* TODO: Add media query to change navigation layout */
 @media (min-width: 600px) {
-  .logo-link {
-    padding: 2.5em 0 0 0; /* Increased height */
+  .header-nav {
+    position: static; /* Remove overlay, back to normal flow */
+    /* Convert to horizontal navigation bar */
   }
 
-  .logo-link img {
-    max-height: 3.5em; /* Slightly larger logo (~56px) */
+  .nav-list {
+    flex-direction: row; /* Horizontal instead of vertical */
+    height: auto; /* Don't need full height */
+    justify-content: flex-end; /* Align to right side */
+  }
+
+  .nav-link {
+    font-size: 0.875rem; /* Smaller text for horizontal nav (14px) */
+    margin-left: 1em; /* Space between links */
+  }
+
+  .close-nav-btn {
+    display: none; /* Hide close button on desktop */
   }
 }
 ```
 
-- More generous vertical spacing
-- Larger logo for better visibility on larger screens
-- Navigation maintains horizontal layout
+**Future enhancements needed:**
+
+- Add hamburger button (☰) to toggle mobile menu visibility
+- Hide navigation by default on mobile (add class like `.nav-hidden`)
+- Show horizontal navigation bar on tablet/desktop
+- Adjust logo sizing for larger screens
+
+### Common Pitfalls & Troubleshooting
+
+**Problem:** "Navigation covers my logo!"
+
+- **Cause:** Both navigation and logo are trying to occupy same space
+- **Solution:** Logo is in `.header-content` (normal flow), navigation is in `.header-nav` (fixed overlay on top)
+- **Check:** Make sure logo is NOT inside `.header-nav`
+
+**Problem:** "Links aren't centered!"
+
+- **Cause:** `.nav-list` doesn't have `height: 100%`
+- **Solution:** Flexbox needs height to distribute items vertically
+- **Check:** Confirm `height: 100%` on `.nav-list`
+
+**Problem:** "Navigation doesn't fill screen!"
+
+- **Cause:** Missing one of the four edge positions (top, right, bottom, left)
+- **Solution:** All four must be set to `0` for full-screen coverage
+- **Check:** Verify `top: 0; right: 0; bottom: 0; left: 0;`
+
+**Problem:** "I can see content behind navigation!"
+
+- **Cause:** Missing `background-color` on `.header-nav`
+- **Solution:** Add solid background color to overlay
+- **Check:** Confirm `background-color: var(--bg-secondary);`
+
+**Problem:** "Close button isn't visible!"
+
+- **Cause:** Close button might be hidden behind nav-list or have wrong color
+- **Solution:** Ensure `position: absolute` on button and bright color
+- **Check:** Verify yellow color (`var(--text-accent)`) and absolute positioning
 
 ### Design Decisions
 
@@ -287,9 +393,16 @@ This is the **key part** for understanding mobile navigation. The navigation cre
    - Strong brand presence
    - High contrast with black background
 
-6. **Semantic HTML:**
+6. **Close button with minimal styling:**
+
+   - Yellow × symbol stands out against black background
+   - Absolute positioning keeps it in corner without disrupting flexbox
+   - Large size (3rem) makes it easy to tap
+
+7. **Semantic HTML:**
    - `<header>` and `<nav>` elements improve accessibility and SEO
    - Screen readers understand document structure
+   - `aria-label` on close button provides context for assistive technology
 
 ### TODOs
 
@@ -336,18 +449,3 @@ This is the **key part** for understanding mobile navigation. The navigation cre
 - Hover/focus states provide visual feedback
 - Bold font weight improves readability on dark background
 - Adequate padding ensures accessible touch targets (minimum 44px)
-
-### Design Decisions
-
-1. **Global grid:** Reuses `.main-grid` class for consistency across all sections
-2. **SVG logo:** Scalable vector format ensures clarity on all screen sizes
-3. **Semantic HTML:** Uses `<header>` and `<nav>` for better accessibility and SEO
-4. **Link wrapper:** Logo wrapped in anchor tag for intuitive homepage navigation
-
-### TODOs
-
-- [ ] Add CSS styling for `.main-nav` (currently inheriting from global styles)
-- [ ] Create responsive navigation menu for mobile (hamburger menu)
-- [ ] Add active state styling to indicate current page
-- [ ] Test keyboard navigation and screen reader compatibility
-- [ ] Consider sticky/fixed positioning for navigation bar
