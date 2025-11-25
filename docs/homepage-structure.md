@@ -9,7 +9,7 @@ This document covers the structure and styling of the main sections on the homep
 ### Structure Diagram
 
 ```
-<section class="hero">
+<section class="hero main-grid">
 ├── <h1 class="hero-title">
 │   └── <span class="accent-text">highlighted text</span>
 ├── <p>
@@ -18,23 +18,25 @@ This document covers the structure and styling of the main sections on the homep
 
 ### Classes Reference
 
-| Element     | Class(es)        | Purpose                                                   |
-| ----------- | ---------------- | --------------------------------------------------------- |
-| `<section>` | `.hero`          | Main hero container with grid layout and background image |
-| `<h1>`      | `.hero-title`    | Main headline of the hero section                         |
-| `<span>`    | `.accent-text`   | Highlights specific text in accent color (yellow)         |
-| `<p>`       | (none)           | Descriptive paragraph with white text                     |
-| `<a>`       | `.btn .hero-btn` | Call-to-action button styled with accent background       |
+| Element     | Class(es)          | Purpose                                                            |
+| ----------- | ------------------ | ------------------------------------------------------------------ |
+| `<section>` | `.hero .main-grid` | Main hero container with background image; uses global grid layout |
+| `<h1>`      | `.hero-title`      | Main headline of the hero section                                  |
+| `<span>`    | `.accent-text`     | Highlights specific text in accent color (yellow)                  |
+| `<p>`       | (none)             | Descriptive paragraph with white text                              |
+| `<a>`       | `.btn .hero-btn`   | Call-to-action button styled with accent background                |
 
 ### Implementation Notes
 
 #### Layout Strategy
 
-The hero section uses **CSS Grid** with a three-column layout to achieve automatic centering:
+The hero section uses the **global grid layout** (`.main-grid` class) which provides a reusable three-column structure for consistent centering across multiple sections:
 
 ```css
-display: grid;
-grid-template-columns: minmax(1em, 1fr) minmax(0px, 500px) minmax(1em, 1fr);
+.main-grid {
+  display: grid;
+  grid-template-columns: minmax(1em, 1fr) minmax(0px, 500px) minmax(1em, 1fr);
+}
 ```
 
 **How it works:**
@@ -54,6 +56,12 @@ The `1fr` units make the left and right columns grow equally, creating **automat
 ```
 
 This selector places all direct children of `.hero` into column 2 (the content area). The `-2` value counts from the end, ensuring content stays in the middle column even if the grid structure changes.
+
+**Why use a global grid class:**
+
+- **DRY principle:** Define the grid structure once, reuse across multiple sections (hero, info, footer)
+- **Consistency:** All sections share the same content width and centering behavior
+- **Maintainability:** Changing the grid structure in one place updates all sections
 
 #### Background Styling
 
@@ -131,4 +139,106 @@ The hero button combines two classes for specificity:
 
 ## Info Section
 
-_To be documented - contains three `.info-card` elements with About Us, Our Skills, and Get in Touch content_
+### Structure Diagram
+
+```
+<section class="info main-grid">
+├── <div class="info-card">
+│   ├── <h2 class="card-title">
+│   └── <p>
+│       └── <strong> (optional emphasis)
+├── <div class="info-card">
+│   ├── <h2 class="card-title">
+│   └── <p>
+│       └── <strong> (optional emphasis)
+└── <div class="info-card">
+    ├── <h2 class="card-title">
+    └── <p>
+        └── <strong> (optional emphasis)
+```
+
+### Classes Reference
+
+| Element     | Class(es)          | Purpose                                                |
+| ----------- | ------------------ | ------------------------------------------------------ |
+| `<section>` | `.info .main-grid` | Container for info cards; uses global grid layout      |
+| `<div>`     | `.info-card`       | Individual card containing title and description       |
+| `<h2>`      | `.card-title`      | Card heading (About Us, Our Skills, Get in Touch)      |
+| `<p>`       | (none)             | Card description text                                  |
+| `<strong>`  | (none)             | Emphasized text within paragraphs (bold + black color) |
+
+### Implementation Notes
+
+#### Layout Strategy
+
+The info section uses the **global grid layout** (`.main-grid` class) for consistent centering with the hero section:
+
+```css
+.info {
+  padding: 4em 0;
+  text-align: center;
+}
+
+.info-card {
+  grid-column: 2 / -2;
+  margin-bottom: 2em;
+}
+```
+
+**Key decisions:**
+
+- **Global grid:** Reuses `.main-grid` for consistent content width (max 500px)
+- **Vertical stacking:** Cards stack vertically in mobile-first layout
+- **Center alignment:** `text-align: center` centers all text content within cards
+- **Card spacing:** `margin-bottom: 2em` creates vertical space between cards
+
+#### Spacing
+
+```css
+padding: 4em 0;
+```
+
+- Vertical padding (top and bottom) matches hero section for visual consistency
+- `4em` = approximately 64px at base font size (16px)
+
+#### Typography
+
+**Card titles:**
+
+```css
+.card-title {
+  font-size: 1.125rem; /* 18px */
+  color: var(--text-title-color);
+  margin-bottom: 1.25em;
+}
+```
+
+- Slightly larger than body text for hierarchy
+- Black color (`var(--text-title-color)`) for prominence
+- Bottom margin creates space before description
+
+**Emphasized text:**
+
+```css
+strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--text-title-color);
+}
+```
+
+- Bold weight (700) makes text stand out
+- Black color for emphasis within gray body text
+
+### Design Decisions
+
+1. **Reusable grid:** Using `.main-grid` class promotes consistency and reduces CSS duplication
+2. **Mobile-first stacking:** Vertical card layout works naturally on narrow viewports
+3. **Center alignment:** Creates balanced, symmetric layout appropriate for marketing content
+4. **Consistent spacing:** Section padding matches hero for unified vertical rhythm
+
+### TODOs
+
+- [ ] Add media queries to display cards in horizontal layout on tablet/desktop
+- [ ] Consider adding icons or images to info cards for visual interest
+- [ ] Test card content with varying text lengths for layout stability
+- [ ] Evaluate if cards need background colors or borders for definition

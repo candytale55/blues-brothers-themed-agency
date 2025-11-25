@@ -26,28 +26,35 @@ h1 {
   line-height: 1.4;
 }
 
+.accent-text {
+  color: var(--text-accent);
+  font-weight: var(--font-weight-bold);
+}
+
 h2,
 h3,
 strong {
   font-weight: var(--font-weight-bold);
   color: var(--text-title-color);
 }
-
-.accent-text {
-  color: var(--text-accent);
-  font-weight: var(--font-weight-bold);
-}
-
-.hero-title {
-  
-}
-
+/* 
 h2 {
   font-size: 1.125rem; /* 18px */
+/*} */
+
+/* .info {
+  font-size: 1.125rem; /* 18px */
+/*} */
+
+.hero-title {
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.4;
 }
 
-.intro {
+.card-title {
   font-size: 1.125rem; /* 18px */
+  color: var(--text-title-color);
+  margin-bottom: 1.25em;
 }
 
 button,
@@ -149,11 +156,16 @@ select {
   text-transform: uppercase;
 } */
 
+/* ====== GENERAL LAYOUT ====== */
+
+.main-grid {
+  display: grid;
+  grid-template-columns: minmax(1em, 1fr) minmax(0px, 500px) minmax(1em, 1fr); 
+}
+
 /* ====== HERO SECTION ======  */
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(1em, 1fr) minmax(0px, 500px) minmax(1em, 1fr); /*TODO: Understand why this works (gets the hero image large)*/
   background-image: url(../images/hero-bg.jpg); /*TODO: Accessibility tags*/
   background-color: var(--bg-secondary);
   color: var(--white);
@@ -163,3 +175,20 @@ select {
 .hero > * {
   grid-column: 2 / -2;
 }
+
+
+/* ====== INFO SECTION ======  */
+
+.info {
+  padding: 4em 0; 
+  text-align: center;
+}
+
+.info-card {
+  grid-column: 2 / -2;
+  margin-bottom: 2em;
+}
+
+
+/* ====== FOOTER SECTION ======  */
+
