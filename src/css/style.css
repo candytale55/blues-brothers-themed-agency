@@ -178,7 +178,34 @@ select {
   text-transform: uppercase;
 } */
 
+/* ====== NAVIGATION SECTION ======  */
 
+header {
+  background-color: var(--bg-secondary);
+}
+
+.header-content {
+  display: flex;
+  grid-column: 2 / -2;
+}
+
+.logo-link {
+  background-color: var(--bg-accent);
+  padding-top: 2em;
+}
+
+
+
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-link {
+  color: var(--white);
+  font-weight: var(--font-weight-bold);
+  padding-left: 3.5em;
+}
 
 /* ====== HERO SECTION ======  */
 
