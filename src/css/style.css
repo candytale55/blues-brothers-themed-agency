@@ -413,6 +413,17 @@ header {
 .page-title {
   font-size: 3rem; /* 48px */
   text-align: center;
+  justify-self: center; /* To center in grid and apply decorative yellow line */
+}
+
+.page-title::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 45px;
+  background-color: var(--bg-accent);
+  margin-top: -45px;
+  margin-left: 15px;
 }
 
 .subtitle {
@@ -425,6 +436,23 @@ header {
   font-size: 1.125rem; /* 18px */
   margin-top: 1.25rem; /* 20px */
 }
+
+/* Yellow lines - decorative*/
+.section-title::after, .card-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin-top: 10px;
+  background-color: var(--bg-accent);
+}
+
+/* Yellow lines - center in homepage  */
+.card-title::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 .section-title:first-child {
   margin-top: 0;
@@ -440,12 +468,12 @@ header {
 
 .main-image{
   margin-bottom: 1.5em;
+
+  box-shadow: 5px 5px 0px var(--bg-secondary), 10px 10px 0px var(--bg-accent);
 }
 
 
 @media (min-width: 600px) {
-  
-
   .main-image {
     grid-column: 2;
   }
