@@ -135,7 +135,7 @@ select {
 
 img {
   max-width: 100%; /* Scales down to fit container */
-  display: block;   /* Removes inline spacing issues */
+  /* display: block;  */  /* Removes inline spacing issues */ /* TODO: Having display block makes the logo move and disalign */
   height: auto;     /* Maintains aspect ratio when scaled */
 }
 /* ========== UTILITY CLASSES ========== */
@@ -404,21 +404,31 @@ header {
 
 
 .page-title, 
-.subtitle{
+.subtitle, 
+.section-title {
   color : var(--text-title-color);
-  text-align: center;
 }
 
 
 .page-title {
   font-size: 3rem; /* 48px */
+  text-align: center;
 }
 
 .subtitle {
   font-size: 1.5rem; /* 24px */
+  text-align: center;
+  margin: .5em 0 3em;
 }
 
+.section-title {
+  font-size: 1.125rem; /* 18px */
+  margin-top: 1.25rem; /* 20px */
+}
 
+.section-title:first-child {
+  margin-top: 0;
+}
 
 .main-template > * {
   grid-column: 2 / -2;
@@ -427,6 +437,11 @@ header {
 .main-template {
   padding: 4em 0;
 }
+
+.main-image{
+  margin-bottom: 1.5em;
+}
+
 
 @media (min-width: 600px) {
   
