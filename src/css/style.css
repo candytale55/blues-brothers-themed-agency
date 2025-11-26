@@ -11,12 +11,12 @@
 .main-grid {
   display: grid;
   grid-template-columns: minmax(1em, 1fr) minmax(0px, 500px) minmax(1em, 1fr);
-  column-gap: 2em; 
+  column-gap: 2em;
 }
 
 @media (min-width: 600px) {
   .main-grid {
-       grid-template-columns: minmax(1em, 1fr) repeat(3, minmax(150px, 320px)) minmax(1em, 1fr);
+    grid-template-columns: minmax(1em, 1fr) repeat(3, minmax(150px, 320px)) minmax(1em, 1fr);
   }
 }
 
@@ -39,9 +39,11 @@ body {
 
 h1 {
   font-weight: var(--font-weight-bold);
-  font-size: 1.5rem; /* 24px */
+  font-size: 1.5rem;
+  /* 24px */
   line-height: 1.4;
-  margin-bottom: 1rem; /* 16px */
+  margin-bottom: 1rem;
+  /* 16px */
 }
 
 .accent-text {
@@ -55,6 +57,7 @@ strong {
   font-weight: var(--font-weight-bold);
   color: var(--text-title-color);
 }
+
 /* 
 h2 {
   font-size: 1.125rem; /* 18px */
@@ -67,19 +70,22 @@ h2 {
 
 
 .hero-title {
-  font-size: 1.5rem; /* 24px */
+  font-size: 1.5rem;
+  /* 24px */
   line-height: 1.4;
 }
 
 .card-title {
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;
+  /* 18px */
   color: var(--text-title-color);
   margin-bottom: 1.25em;
 }
 
 button,
 nav {
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem;
+  /* 14px */
 }
 
 /* ------ Buttons ------- */
@@ -88,15 +94,15 @@ nav {
   display: inline-block;
   font-weight: var(--font-weight-bold);
   padding: 0.5em 1.5em;
- }
+}
 
- .hero-btn {
+.hero-btn {
   background-color: var(--bg-accent);
   color: var(--black);
   padding: 0.5em 1.5em;
   justify-self: start;
   margin-top: 1em;
- }
+}
 
 /* ------ Links and Lists ------- */
 
@@ -110,7 +116,8 @@ ol {
 
 
 /* Remove underlines and inherit parent color for custom link styling */
-a, button {
+a,
+button {
   text-decoration: none;
   cursor: pointer;
 }
@@ -166,7 +173,8 @@ select {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
-} */ /* TODO: Confirm */
+} */
+/* TODO: Confirm */
 
 /* Capitalizes the first letter of each word */
 /* .capitalize {
@@ -182,6 +190,14 @@ select {
 
 header {
   background-color: var(--bg-secondary);
+}
+
+.header-home {
+  background: transparent;
+  /* TODO: Understand difference betwwen transparent background, visibility, and opacity - Why is this working */
+  position: absolute;
+  width: 100%;
+  /* TODO: To avoid disalignment due to position absolute ? */
 }
 
 .header-content {
@@ -201,18 +217,21 @@ header {
   top: 0;
   right: 0;
   bottom: 0;
-  left: 100%; /* Shifts the nav out of the way to the left 100% */
+  left: 100%;
+  /* Shifts the nav out of the way to the left 100% */
   transform: translateX(0);
   transition: transform 250ms;
 }
 
 .navigation-open {
-  transform: translateX(-100%); /* Brings the nav into view again */
+  transform: translateX(-100%);
+  /* Brings the nav into view again */
 }
 
 .nav-list {
-  /* border: 2px solid orangered; */ /*TODO: REMOVE*/
-  height: 100%;  
+  /* border: 2px solid orangered; */
+  /*TODO: REMOVE*/
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -221,7 +240,8 @@ header {
 
 .nav-link {
   color: var(--white);
-  font-size: 3rem; /* 48px */
+  font-size: 3rem;
+  /* 48px */
   font-weight: var(--font-weight-bold);
   text-transform: lowercase;
 }
@@ -230,10 +250,11 @@ header {
 .nav-link:focus {
   color: var(--text-accent);
   text-decoration: none;
-} 
+}
 
 
-.close-nav-btn, .open-nav-btn {
+.close-nav-btn,
+.open-nav-btn {
   border: 0;
   background: 0;
   font-weight: var(--font-weight-bold);
@@ -243,31 +264,38 @@ header {
 .close-nav-btn {
   position: absolute;
   color: var(--text-accent);
-  font-size: 3rem; /* 48px */
+  font-size: 3rem;
+  /* 48px */
 }
 
 .open-nav-btn {
   margin-left: auto;
   color: var(--white);
-  font-size: 1.5rem; /* 24px */
+  font-size: 1.5rem;
+  /* 24px */
 }
 
 @media (min-width: 600px) {
-  .open-nav-btn, .close-nav-btn {
+
+  .open-nav-btn,
+  .close-nav-btn {
     display: none;
   }
 
   .header-nav {
-    position: initial; /* TODO: Understand diffrenece between initial, unset and static */
+    position: initial;
+    /* TODO: Understand diffrenece between initial, unset and static */
+    background-color: transparent;
   }
 
   .nav-list {
     flex-direction: row;
     justify-content: flex-start;
   }
- 
+
   .nav-link {
-    font-size: 1rem; /* 16px */
+    font-size: 1rem;
+    /* 16px */
     margin-left: 2em;
   }
 }
@@ -275,31 +303,39 @@ header {
 /* ====== HERO SECTION ======  */
 
 .hero {
-  background-image: url(../images/hero-bg.jpg); /*TODO: Accessibility tags*/
+  background-image: url(../images/hero-bg.jpg);
+  /*TODO: Accessibility tags*/
   background-size: cover;
   background-color: var(--bg-secondary);
   background-position: bottom;
   color: var(--white);
-  padding: 4em 0;
+  padding: 8em 0 4em;
 }
 
-.hero > * {
+.hero>* {
   grid-column: 2 / -2;
+}
+
+@media (min-width: 400px) {
+  .hero>* {
+    margin-right: 20%;
+  }
 }
 
 @media(min-width: 600px) {
   .hero {
-    padding: 6em 0;
+    padding: 10em 0 6em;
   }
- .hero > * {
-  grid-column: 2 / span 2;
-}
+
+  .hero>* {
+    grid-column: 2 / span 2;
+  }
 }
 
 /* ====== INFO SECTION ======  */
 
 .info {
-  padding: 4em 0; 
+  padding: 4em 0;
   text-align: center;
 }
 
@@ -312,6 +348,7 @@ header {
   .info-card {
     grid-column: span 1;
   }
+
   .info-card:first-child {
     grid-column: 2 / span 1;
   }
@@ -324,7 +361,7 @@ header {
   background-color: var(--bg-footer);
   padding: 4em 0;
   text-align: center;
-  grid-template-areas: 
+  grid-template-areas:
     ". social-media ."
     ". footer-main  .";
 }
@@ -335,13 +372,15 @@ header {
 
 .rss-links-list {
   grid-area: social-media;
-  display: flex; 
+  display: flex;
   justify-content: center;
   margin-bottom: 2em;
 }
 
 .rss-link {
-  font-size: 1.5rem  /* 24px */;
+  font-size: 1.5rem
+    /* 24px */
+  ;
   color: var(--text-title-color);
   margin: 0 .5em;
 }
@@ -351,32 +390,35 @@ header {
   color: var(--btn-hover-text);
 }
 
-.footer p{
+.footer p {
   margin-bottom: 1.25em;
 }
 
 .copyright-fineprint {
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem;
+  /* 14px */
 }
 
 .footer .logo {
   margin: 0 0 1em 0;
 }
 
-.footer p, .footer .logo {
+.footer p,
+.footer .logo {
   opacity: 0.9;
 }
 
 @media(min-width: 600px) {
- .footer {
-   grid-template-areas:
-   ". footer-main footer-main social-media ." 
- }
+  .footer {
+    grid-template-areas:
+      ". footer-main footer-main social-media ."
+  }
 
- .footer-main-container {
-   text-align: left
- }
- .rss-links-list {
-  justify-content: flex-end;
- }
+  .footer-main-container {
+    text-align: left
+  }
+
+  .rss-links-list {
+    justify-content: flex-end;
+  }
 }
