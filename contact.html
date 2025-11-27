@@ -1,26 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact - Jake & Elwood Agency</title>
 
-    <!-- link to google fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jake & Elwood Agency</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="/src/css/variables.css" />
-    <link rel="stylesheet" href="/src/css/style.css" />
-  </head>
-  <body>
+  <!-- link to google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
 
-    <h1>I am Contact.html</h1>
+  <!-- https://cdnjs.com/libraries/font-awesome -->
 
-    <!-- JavaScript -->
-    <script type="module" src="/src/js/main.js"></script>
-  </body>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/src/css/variables.css" />
+  <link rel="stylesheet" href="/src/css/style.css" />
+</head>
+
+<body>
+  <header class="header main-grid">
+      <div class="header-content">
+
+        <a class="logo-link" 
+          href="./index.html">
+          
+          <img class="logo header-logo" 
+            src="./src/images/logo.svg" 
+            alt="Jake & Elwood Agency Logo" />
+        </a>
+
+        <button class="open-nav-btn" aria-label="Open navigation">&#9776;
+        </button>
+
+
+      <nav class="header-nav">
+        
+        <button class="close-nav-btn" aria-label="Close navigation">
+          &times;
+        </button>
+
+          
+        
+        <ul class="nav-list">
+          
+          <li class="nav-element">
+            <a href="./index.html" class="nav-link link">Home</a>
+          </li>
+        
+          <li class="nav-element">
+            <a href="./about.html" class="nav-link link">About us</a>
+          </li>
+
+          <li class="nav-element">
+            <a href="./contact.html" class="nav-link link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      
+    </div>
+  </header>
+
+  <!--====CONTACT PAGE====-->
+  
+  <main class="main-grid main-template">
+
+    <h1 class="page-title">Contact.</h1> 
+
+    <p class="subtitle">Let us know how we can help you need and we'll drive over to your place in our Bluesmobile the following day to discuss the deal.</p>
+
+    <img class="main-image contact-image" src="./src/images/contact.jpg" alt="Row of colorful mailboxes in front of dense green foliage." class="main-image">
+    
+    <div class="secondary-text">
+      
+      <h2 class="section-title">Getting in touch with us </h2>
+
+      <p>You can either use the form or send us an email. I'll get back in touch with you as soon as possible!</p>
+    </div>
+
+    <div class="main-text">
+      <form action="POST" class="contact-form">
+        
+        <label 
+          for="name" class="name-label">Name</label>
+        <input 
+          type="text" 
+          id="name"  class="name-input">
+
+        <label 
+          for="email" class="email-label">Email</label>
+        <input 
+          type="email"  class="email-input" 
+          id="email">
+
+        <label 
+          for="message"
+           class="message-label">Message</label>
+        <textarea 
+          id="message"
+           class="message-textarea"></textarea>
+        
+        <button class="btn btn-primary">send</button>
+
+
+      </form>
+    </div>
+    
+  </main>
+
+  <footer class="footer main-grid">
+    <div class="footer-main-container">
+      <img class="logo" src="./src/images/logo.svg" alt="Jake & Elwood Logo" />
+      <p>
+        Two brothers from Chicago that are just trying to pay back their debt
+        by helping others with their SEO, SEM, and Content Marketing needs.
+      </p>
+      <p class="copyright-fineprint">
+        &copy; Jake & Elwood <span class="copy-year">2019</span>
+      </p>
+    </div>
+    <ul class="rss-links-list">
+      <li class="rss-item">
+        <a href="#" class="link rss-link">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+      </li>
+      <li class="rss-item">
+        <a href="#" class="link rss-link">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+      </li>
+      <li class="rss-item">
+        <a href="#" class="link rss-link">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </li>
+      <li class="rss-item">
+        <a href="#" class="link rss-link">
+          <i class="fa-brands fa-square-instagram"></i></i>
+        </a>
+      </li>
+    </ul>
+  </footer>
+
+  <!-- JavaScript -->
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+
 </html>

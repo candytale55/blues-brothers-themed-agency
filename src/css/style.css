@@ -58,6 +58,9 @@ strong {
   color: var(--text-title-color);
 }
 
+p {
+  margin-bottom: 1.5em;
+}
 
 .hero-title {
   font-size: 1.5rem;
@@ -86,7 +89,8 @@ nav {
   padding: 0.5em 1.5em;
 }
 
-.hero-btn {
+/* Note: one is an anchor, the other a button */
+.hero-btn, .btn-primary {
   background-color: var(--bg-accent);
   color: var(--black);
   padding: 0.5em 1.5em;
@@ -101,8 +105,7 @@ ol {
   list-style: none;
 }
 
-a,
-button {
+a{
   text-decoration: none;
   cursor: pointer;
 }
@@ -115,21 +118,19 @@ a:focus {
 /* ------ Forms ----- */
 
 /* Reset button styles to allow custom styling without browser defaults */
-/* button {
-  font-family: inherit;
-  font-size: inherit;
+
+button {
   cursor: pointer;
   border: none;
-  background: none;
-} */
+} 
 
 /* Inherit font properties for consistency with body text */
-/* input,
+input,
 textarea,
 select {
   font-family: inherit;
   font-size: inherit;
-} */
+} 
 
 /* ------ Images ----- */
 
@@ -484,14 +485,71 @@ header {
 }
 
 
-
-
-
-
-
-
-
-
 /* ==================================  */
     /* ====== CONTACT PAGE ======  */
 /* ==================================  */
+
+.contact-form {
+  display: grid;
+}
+
+label {
+  font-weight: var(--font-weight-bold);
+  color: var(--bg-secondary);
+}
+
+textarea,
+input {
+  margin-bottom: 1.5em;
+  padding: 0.5em;
+}
+
+textarea {
+  resize: vertical;
+  height: 9.35rem;   /* 150px */
+}
+
+.btn-primary {
+  margin-left: auto;
+}
+
+@media (min-width: 600px) {
+
+  .main-image {
+    grid-column: 2; /* TODO: Isn't this redundant with the previous definition? */
+  }
+
+  .main-text {
+    grid-column: 3 / span 2;
+    grid-row: span 2;
+  }
+
+  .secondary-text {
+    grid-column: 2 / 3;
+    order: 2; /* Ensures secondary text appears after the form */ /* TODO:Understand */
+  }  
+
+  .contact-form {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1em;
+    grid-auto-flow: dense;
+  }
+  .name-label,
+  .name-input {
+    grid-column: 1;
+  }
+
+  .email-label,
+  .email-input {
+    grid-column: 2;
+  }
+
+  .message-label,
+  .message-textarea {
+    grid-column: span 2;
+  }
+
+  .btn-primary {
+    grid-column: 2;
+  }
+}
