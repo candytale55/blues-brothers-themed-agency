@@ -1,14 +1,15 @@
-/* ========== CSS CUSTOM PROPERTIES ========== */
+/* ========== CSS VARIABLES ========== */
 
 :root {
-  /* TODO: Add CSS variables here */
 
-  --white: #ffffff;
-  --black: #000000;
-  --dark-gray: #404040;
+  /* Color Palette */
+  --white:      #ffffff;
+  --black:      #000000;
   --light-gray: #ebebeb;
-  --yellow: #ffe600;
-  --medium-gray: #777777;
+  --medium-gray:#777777;
+  --dark-gray:  #404040;
+  --yellow:     #ffe600;
+  --dark-yellow:#ffc400;
 
   /* Typography */
   --font-family-base: Montserrat, sans-serif;
@@ -19,19 +20,19 @@
   --line-height-base: 1.5;
 
   /* Background Colors */
-  --bg-primary: var(--white);
+  --bg-primary:   var(--white);
   --bg-secondary: var(--black);
-  --bg-accent: var(--yellow);
-  --bg-footer: var(--light-gray);
+  --bg-accent:    var(--yellow);
+  --bg-footer:    var(--light-gray);
   /* --bg-dark: ; */
   /* --bg-light: ; */
   /* --bg-white: ; */
 
   /* Text Colors */
-  --text-primary: var(--dark-gray);
+  --text-primary:     var(--dark-gray);
   --text-title-color: var(--black);
-  --text-secondary: var(--white);
-  --text-accent: var(--yellow);
+  --text-secondary:   var(--white);
+  --text-accent:      var(--yellow);
   /* --text-light: ; */
   /* --text-dark: ; */
   /* --text-white: ; */
@@ -42,12 +43,11 @@
   /* --border-light: ; */
 
   /* Button Colors */
-  /* --btn-bg-primary: ; */
+  --btn-bg-primary: var(--yellow); 
   /* --btn-bg-secondary: ; */
   /* --btn-text-primary: ; */
   /* --btn-text-secondary: ; */
-  /* --btn-hover-bg: ; */
-  --btn-hover-text: var(--medium-gray); 
+  --btn-hover-bg:   var(--dark-yellow); 
 
   /* Semantic Colors */
   /* --color-success: ; */

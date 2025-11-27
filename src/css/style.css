@@ -98,6 +98,13 @@ nav {
   margin-top: 1em;
 }
 
+.hero-btn:hover, .btn-primary:hover,
+.hero-btn:focus, .btn-primary:focus {
+  background-color: var(--btn-hover-bg);
+  text-decoration: none;
+}
+
+
 /* ------ Links and Lists ------- */
 
 ul,
@@ -250,6 +257,10 @@ header {
   /* 24px */
 }
 
+.current {
+  border-bottom: 2px solid var(--text-accent);
+}
+
 @media (min-width: 600px) {
 
   .open-nav-btn,
@@ -273,6 +284,7 @@ header {
     /* 16px */
     margin-left: 2em;
   }
+
 }
 
 /* ====== HERO SECTION ======  */
