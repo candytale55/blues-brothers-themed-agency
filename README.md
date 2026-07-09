@@ -14,6 +14,12 @@ This project showcases a modern, responsive website with clean typography and a 
 - **Modular CSS** organization
 - **Accessible** design patterns
 
+## Screenshots
+
+|Wide|Mobile|
+|-|-|
+|![Wide](./docs/shots/wide.png)|![Mobile](./docs/shots/mobile.png)|
+
 ## Project Structure
 
 ```
